@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/TeamsAPI.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">All files</a> / <a href="index.html">lib</a> TeamsAPI.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">3.08% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>2/65</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/36</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/16</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">3.33% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>2/60</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var request = require('requestretry');
+&nbsp;
+module.exports = <span class="fstat-no" title="function not covered" >fu</span>nction(configuration) {
+&nbsp;
+    var api = <span class="cstat-no" title="statement not covered" >{</span>
+&nbsp;
+        request: <span class="fstat-no" title="function not covered" >fu</span>nction(options, cb) {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (!options.headers) {</span>
+<span class="cstat-no" title="statement not covered" >                options.headers = {</span>
+                    'content-type': 'application/json',
+                    Authorization: 'Bearer ' + configuration.token
+                };
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            request(options, <span class="fstat-no" title="function not covered" >fu</span>nction(err, res, body) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (err &amp;&amp; cb) {</span>
+<span class="cstat-no" title="statement not covered" >                    return cb(err);</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (res.statusCode == 202) {</span>
+                    /*
+                     * this message has been queued for delivery on the Teams-side
+                     * Awkward that it does not return the normal message object
+                     * this prevents use of message updating for messages that get queued
+                     */
+<span class="cstat-no" title="statement not covered" >                    if (cb) { <span class="cstat-no" title="statement not covered" >return cb(null, {}); </span>} else <span class="cstat-no" title="statement not covered" >return;</span></span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (!body) {</span>
+<span class="cstat-no" title="statement not covered" >                    if (cb) { <span class="cstat-no" title="statement not covered" >return cb('Error parsing json response'); </span>}</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (body.error) {</span>
+<span class="cstat-no" title="statement not covered" >                    if (cb) { <span class="cstat-no" title="statement not covered" >return cb(body.error); </span>}</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (cb) { <span class="cstat-no" title="statement not covered" >cb(null, body); </span>}</span>
+&nbsp;
+            });
+        },
+        createConversation: <span class="fstat-no" title="function not covered" >fu</span>nction(data, cb) {
+            var uri = <span class="cstat-no" title="statement not covered" >configuration.serviceUrl + 'v3/conversations';</span>
+<span class="cstat-no" title="statement not covered" >            api.request({</span>
+                method: 'POST',
+                json: true,
+                body: data,
+                uri: uri
+            }, cb);
+        },
+        updateMessage: <span class="fstat-no" title="function not covered" >fu</span>nction(conversationId, messageId, replacement, cb) {
+&nbsp;
+            var uri = <span class="cstat-no" title="statement not covered" >configuration.serviceUrl + 'v3/conversations/' + encodeURIComponent(conversationId) + '/activities/' + encodeURIComponent(messageId);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            api.request(</span>
+                {
+                    method: 'PUT',
+                    json: true,
+                    body: replacement,
+                    uri: uri
+                }, cb
+            );
+&nbsp;
+        },
+        addMessageToConversation: <span class="fstat-no" title="function not covered" >fu</span>nction(conversationId, message, cb) {
+&nbsp;
+            var uri = <span class="cstat-no" title="statement not covered" >configuration.serviceUrl + 'v3/conversations/' + conversationId + '/activities';</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            api.request(</span>
+                {
+                    method: 'POST',
+                    json: true,
+                    body: message,
+                    uri: uri
+                }, cb);
+&nbsp;
+        },
+        getChannels: <span class="fstat-no" title="function not covered" >fu</span>nction(teamId, cb) {
+&nbsp;
+            var uri = <span class="cstat-no" title="statement not covered" >configuration.serviceUrl + 'v3/teams/' + teamId + '/conversations/';</span>
+<span class="cstat-no" title="statement not covered" >            api.request({</span>
+                method: 'GET',
+                json: true,
+                uri: uri
+            }, <span class="fstat-no" title="function not covered" >fu</span>nction(err, list) {
+<span class="cstat-no" title="statement not covered" >                if (err) {</span>
+<span class="cstat-no" title="statement not covered" >                    cb(err);</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    for (var c = 0; c &lt; list.conversations.length; c++) {</span>
+<span class="cstat-no" title="statement not covered" >                        if (list.conversations[c].id == teamId) {</span>
+<span class="cstat-no" title="statement not covered" >                            list.conversations[c].name = 'General';</span>
+                        }
+                    }
+<span class="cstat-no" title="statement not covered" >                    cb(null, list.conversations);</span>
+                }
+            });
+&nbsp;
+        },
+        getUserById: <span class="fstat-no" title="function not covered" >fu</span>nction(conversationId, userId, cb) {
+<span class="cstat-no" title="statement not covered" >            api.getTeamRoster(conversationId, <span class="fstat-no" title="function not covered" >fu</span>nction(err, roster) {</span>
+<span class="cstat-no" title="statement not covered" >                if (err) {</span>
+<span class="cstat-no" title="statement not covered" >                    return cb(err);</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    for (var u = 0; u &lt; roster.length; u++) {</span>
+<span class="cstat-no" title="statement not covered" >                        if (roster[u].id == userId) {</span>
+<span class="cstat-no" title="statement not covered" >                            return cb(null, roster[u]);</span>
+                        }
+                    }
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                cb('User not found');</span>
+&nbsp;
+            });
+        },
+        getUserByUpn: <span class="fstat-no" title="function not covered" >fu</span>nction(conversationId, upn, cb) {
+<span class="cstat-no" title="statement not covered" >            api.getTeamRoster(conversationId, <span class="fstat-no" title="function not covered" >fu</span>nction(err, roster) {</span>
+<span class="cstat-no" title="statement not covered" >                if (err) {</span>
+<span class="cstat-no" title="statement not covered" >                    return cb(err);</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    for (var u = 0; u &lt; roster.length; u++) {</span>
+<span class="cstat-no" title="statement not covered" >                        if (roster[u].userPrincipalName == upn) {</span>
+<span class="cstat-no" title="statement not covered" >                            return cb(null, roster[u]);</span>
+                        }
+                    }
+                }
+<span class="cstat-no" title="statement not covered" >                cb('User not found');</span>
+            });
+        },
+        getConversationMembers: <span class="fstat-no" title="function not covered" >fu</span>nction(conversationId, cb) {
+&nbsp;
+            var uri = <span class="cstat-no" title="statement not covered" >configuration.serviceUrl + 'v3/conversations/' + conversationId + '/members/';</span>
+<span class="cstat-no" title="statement not covered" >            api.request({</span>
+                method: 'GET',
+                json: true,
+                uri: uri
+            }, cb);
+&nbsp;
+        },
+        getTeamRoster: <span class="fstat-no" title="function not covered" >fu</span>nction(conversation_id, cb) {
+&nbsp;
+            var uri = <span class="cstat-no" title="statement not covered" >configuration.serviceUrl + 'v3/conversations/' + conversation_id + '/members/';</span>
+<span class="cstat-no" title="statement not covered" >            api.request({</span>
+                method: 'GET',
+                json: true,
+                uri: uri
+            }, cb);
+&nbsp;
+        },
+        getToken: <span class="fstat-no" title="function not covered" >fu</span>nction(cb) {
+<span class="cstat-no" title="statement not covered" >            request(</span>
+                {
+                    uri: 'https://login.microsoftonline.com/botframework.com/oauth2/v2.0/token',
+                    form: {
+                        grant_type: 'client_credentials',
+                        client_id: configuration.clientId,
+                        client_secret: configuration.clientSecret,
+                        scope: 'https://api.botframework.com/.default'
+                    }
+                },
+<span class="fstat-no" title="function not covered" >                fu</span>nction(err, res, body) {
+<span class="cstat-no" title="statement not covered" >                    if (err) {</span>
+<span class="cstat-no" title="statement not covered" >                        cb(err);</span>
+                    } else {
+                        var json = <span class="cstat-no" title="statement not covered" >null;</span>
+<span class="cstat-no" title="statement not covered" >                        try {</span>
+                            var json = <span class="cstat-no" title="statement not covered" >JSON.parse(body);</span>
+                        } catch (err) {
+<span class="cstat-no" title="statement not covered" >                            return cb(err);</span>
+                        }
+<span class="cstat-no" title="statement not covered" >                        if (json.error) {</span>
+<span class="cstat-no" title="statement not covered" >                            return cb(json.error_description);</span>
+                        }
+<span class="cstat-no" title="statement not covered" >                        configuration.token = json.access_token;</span>
+<span class="cstat-no" title="statement not covered" >                        configuration.token_expires_in = json.expires_in;</span>
+<span class="cstat-no" title="statement not covered" >                        cb(null);</span>
+                    }
+                }
+            );
+        },
+&nbsp;
+&nbsp;
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return api;</span>
+&nbsp;
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Dec 14 2018 14:56:57 GMT-0600 (Central Standard Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

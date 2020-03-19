@@ -1,0 +1,2054 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/Studio.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">All files</a> / <a href="index.html">lib</a> Studio.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">8.71% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>23/264</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/205</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">1.75% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/57</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">8.71% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>23/264</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664</td><td class="line-coverage quiet"><span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var SDK = require('botkit-studio-sdk');
+&nbsp;
+module.exports = function(controller) {
+    var before_hooks = {};
+    var after_hooks = {};
+    var answer_hooks = {};
+    var thread_hooks = {};
+&nbsp;
+    // define a place for the studio specific features to live.
+    controller.studio = {};
+&nbsp;
+    /*
+     * ----------------------------------------------------------------
+     * Botkit Studio Script Services
+     * The features in this section grant access to Botkit Studio's
+     * script and trigger services
+     * ----------------------------------------------------------------
+     */
+&nbsp;
+&nbsp;
+    function <span class="fstat-no" title="function not covered" >genConfig(</span>bot) {
+        var config = <span class="cstat-no" title="statement not covered" >{};</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (bot.config &amp;&amp; bot.config.studio_token) {</span>
+<span class="cstat-no" title="statement not covered" >            config.studio_token = bot.config.studio_token;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (bot.config &amp;&amp; bot.config.studio_command_uri) {</span>
+<span class="cstat-no" title="statement not covered" >            config.studio_command_uri = bot.config.studio_command_uri;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (controller.config &amp;&amp; controller.config.studio_token) {</span>
+<span class="cstat-no" title="statement not covered" >            config.studio_token = controller.config.studio_token;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (controller.config &amp;&amp; controller.config.studio_command_uri) {</span>
+<span class="cstat-no" title="statement not covered" >            config.studio_command_uri = controller.config.studio_command_uri;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return config;</span>
+    }
+&nbsp;
+    controller.studio.evaluateTrigger = <span class="fstat-no" title="function not covered" >fu</span>nction(bot, text) {
+&nbsp;
+        var sdk = <span class="cstat-no" title="statement not covered" >new SDK(genConfig(bot));</span>
+<span class="cstat-no" title="statement not covered" >        return sdk.evaluateTrigger(text);</span>
+&nbsp;
+    };
+&nbsp;
+    // get Botkit Studio identity
+    controller.studio.identify = <span class="fstat-no" title="function not covered" >fu</span>nction(bot) {
+        var sdk = <span class="cstat-no" title="statement not covered" >new SDK(genConfig(bot || {}));</span>
+<span class="cstat-no" title="statement not covered" >        return sdk.identify();</span>
+    };
+&nbsp;
+    // get command list
+    controller.studio.getScripts = <span class="fstat-no" title="function not covered" >fu</span>nction(bot, tag) {
+        var sdk = <span class="cstat-no" title="statement not covered" >new SDK(genConfig(bot || {}));</span>
+<span class="cstat-no" title="statement not covered" >        return sdk.getScripts(tag);</span>
+    };
+&nbsp;
+    /*
+     * create a simple script
+     * with a single trigger and single reply
+     */
+    controller.studio.createScript = <span class="fstat-no" title="function not covered" >fu</span>nction(bot, trigger, text) {
+        var sdk = <span class="cstat-no" title="statement not covered" >new SDK(genConfig(bot || {}));</span>
+<span class="cstat-no" title="statement not covered" >        return sdk.createScript(trigger, text);</span>
+    };
+&nbsp;
+    // load a script from the pro service
+    controller.studio.getScriptById = <span class="fstat-no" title="function not covered" >fu</span>nction(bot, id) {
+        var sdk = <span class="cstat-no" title="statement not covered" >new SDK(genConfig(bot));</span>
+<span class="cstat-no" title="statement not covered" >        return sdk.getScriptById(id);</span>
+    };
+&nbsp;
+    // load a script from the pro service
+    controller.studio.getScript = <span class="fstat-no" title="function not covered" >fu</span>nction(bot, text) {
+        var sdk = <span class="cstat-no" title="statement not covered" >new SDK(genConfig(bot));</span>
+<span class="cstat-no" title="statement not covered" >        return sdk.getScript(text);</span>
+    };
+&nbsp;
+&nbsp;
+    // these are middleware functions
+    controller.studio.validate = <span class="fstat-no" title="function not covered" >fu</span>nction(command_name, key, func) {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (!answer_hooks[command_name]) {</span>
+<span class="cstat-no" title="statement not covered" >            answer_hooks[command_name] = [];</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (key &amp;&amp; !answer_hooks[command_name][key]) {</span>
+<span class="cstat-no" title="statement not covered" >            answer_hooks[command_name][key] = [];</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        answer_hooks[command_name][key].push(func);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return controller.studio;</span>
+    };
+&nbsp;
+&nbsp;
+    controller.studio.beforeThread = <span class="fstat-no" title="function not covered" >fu</span>nction(command_name, thread_name, func) {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (!thread_hooks[command_name]) {</span>
+<span class="cstat-no" title="statement not covered" >            thread_hooks[command_name] = [];</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (thread_name &amp;&amp; !thread_hooks[command_name][thread_name]) {</span>
+<span class="cstat-no" title="statement not covered" >            thread_hooks[command_name][thread_name] = [];</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        thread_hooks[command_name][thread_name].push(func);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return controller.studio;</span>
+    };
+&nbsp;
+&nbsp;
+&nbsp;
+    controller.studio.before = <span class="fstat-no" title="function not covered" >fu</span>nction(command_name, func) {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (!before_hooks[command_name]) {</span>
+<span class="cstat-no" title="statement not covered" >            before_hooks[command_name] = [];</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        before_hooks[command_name].push(func);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return controller.studio;</span>
+    };
+&nbsp;
+    controller.studio.after = <span class="fstat-no" title="function not covered" >fu</span>nction(command_name, func) {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (!after_hooks[command_name]) {</span>
+<span class="cstat-no" title="statement not covered" >            after_hooks[command_name] = [];</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        after_hooks[command_name].push(func);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return controller.studio;</span>
+&nbsp;
+    };
+&nbsp;
+    function <span class="fstat-no" title="function not covered" >runHooks(</span>hooks, convo, cb) {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (!hooks || !hooks.length) {</span>
+<span class="cstat-no" title="statement not covered" >            return cb(convo);</span>
+        }
+&nbsp;
+        var func = <span class="cstat-no" title="statement not covered" >hooks.shift();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        func(convo, <span class="fstat-no" title="function not covered" >fu</span>nction() {</span>
+<span class="cstat-no" title="statement not covered" >            if (hooks.length) {</span>
+<span class="cstat-no" title="statement not covered" >                runHooks(hooks, convo, cb);</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >                return cb(convo);</span>
+            }
+        });
+    }
+&nbsp;
+&nbsp;
+    /*
+     * Fetch a script from Botkit Studio by name, then execute it.
+     * returns a promise that resolves when the conversation is loaded and active
+     */
+    controller.studio.run = <span class="fstat-no" title="function not covered" >fu</span>nction(bot, input_text, user, channel, original_message) {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return new Promise(<span class="fstat-no" title="function not covered" >fu</span>nction(resolve, reject) {</span>
+<span class="cstat-no" title="statement not covered" >            controller.studio.get(bot, input_text, user, channel, original_message).then(<span class="fstat-no" title="function not covered" >fu</span>nction(convo) {</span>
+<span class="cstat-no" title="statement not covered" >                convo.activate();</span>
+<span class="cstat-no" title="statement not covered" >                resolve(convo);</span>
+            }).catch(<span class="fstat-no" title="function not covered" >fu</span>nction(err) {
+<span class="cstat-no" title="statement not covered" >                reject(err);</span>
+            });
+        });
+&nbsp;
+    };
+&nbsp;
+    /*
+     * Fetch a script from Botkit Studio by name, but do not execute it.
+     * returns a promise that resolves when the conversation is loaded
+     * but developer still needs to call convo.activate() to put it in motion
+     */
+    controller.studio.get = <span class="fstat-no" title="function not covered" >fu</span>nction(bot, input_text, user, channel, original_message) {
+        var context = <span class="cstat-no" title="statement not covered" >{</span>
+            text: input_text,
+            user: user,
+            channel: channel,
+            raw_message: original_message ? original_message.raw_message : null,
+            original_message: original_message || null
+        };
+<span class="cstat-no" title="statement not covered" >        return new Promise(<span class="fstat-no" title="function not covered" >fu</span>nction(resolve, reject) {</span>
+<span class="cstat-no" title="statement not covered" >            controller.studio.getScript(bot, input_text).then(<span class="fstat-no" title="function not covered" >fu</span>nction(command) {</span>
+<span class="cstat-no" title="statement not covered" >                if (command !== {} &amp;&amp; command.id) {</span>
+<span class="cstat-no" title="statement not covered" >                    controller.trigger('command_triggered', [bot, context, command]);</span>
+&nbsp;
+                    // make the script source information from Botkit Studio available to Botkit's convo object
+<span class="cstat-no" title="statement not covered" >                    context.script_name = command.command;</span>
+<span class="cstat-no" title="statement not covered" >                    context.script_id = command._id;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    controller.studio.compileScript(</span>
+                        bot,
+                        context,
+                        command
+                    ).then(<span class="fstat-no" title="function not covered" >fu</span>nction(convo) {
+<span class="cstat-no" title="statement not covered" >                        convo.on('end', <span class="fstat-no" title="function not covered" >fu</span>nction(convo) {</span>
+<span class="cstat-no" title="statement not covered" >                            runHooks(</span>
+                                after_hooks[command.command] ? after_hooks[command.command].slice() : [],
+                                convo,
+<span class="fstat-no" title="function not covered" >                                fu</span>nction(convo) {
+<span class="cstat-no" title="statement not covered" >                                    controller.trigger('remote_command_end', [bot, context, command, convo]);</span>
+                                }
+                            );
+                        });
+<span class="cstat-no" title="statement not covered" >                        runHooks(</span>
+                            before_hooks[command.command] ? before_hooks[command.command].slice() : [],
+                            convo,
+<span class="fstat-no" title="function not covered" >                            fu</span>nction(convo) {
+<span class="cstat-no" title="statement not covered" >                                resolve(convo);</span>
+                            }
+                        );
+                    }).catch(<span class="fstat-no" title="function not covered" >fu</span>nction(err) {
+<span class="cstat-no" title="statement not covered" >                        reject(err);</span>
+                    });
+                } else {
+<span class="cstat-no" title="statement not covered" >                    reject('Script not found');</span>
+                }
+            }).catch(<span class="fstat-no" title="function not covered" >fu</span>nction(err) {
+<span class="cstat-no" title="statement not covered" >                reject(err);</span>
+            });
+        });
+    };
+&nbsp;
+    /*
+     * Fetch a script from Botkit Studio by id, but do not execute it.
+     * returns a promise that resolves when the conversation is loaded
+     * but developer still needs to call convo.activate() to put it in motion
+     */
+    controller.studio.getById = <span class="fstat-no" title="function not covered" >fu</span>nction(bot, id, user, channel, original_message) {
+        var context = <span class="cstat-no" title="statement not covered" >{</span>
+            id: id,
+            user: user,
+            channel: channel,
+            raw_message: original_message ? original_message.raw_message : null,
+            original_message: original_message || null
+        };
+<span class="cstat-no" title="statement not covered" >        return new Promise(<span class="fstat-no" title="function not covered" >fu</span>nction(resolve, reject) {</span>
+<span class="cstat-no" title="statement not covered" >            controller.studio.getScriptById(bot, id).then(<span class="fstat-no" title="function not covered" >fu</span>nction(command) {</span>
+<span class="cstat-no" title="statement not covered" >                if (command !== {} &amp;&amp; command.id) {</span>
+<span class="cstat-no" title="statement not covered" >                    controller.trigger('command_triggered', [bot, context, command]);</span>
+&nbsp;
+                    // make the script source information from Botkit Studio available to Botkit's convo object
+<span class="cstat-no" title="statement not covered" >                    context.script_name = command.command;</span>
+<span class="cstat-no" title="statement not covered" >                    context.script_id = command._id;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    controller.studio.compileScript(</span>
+                        bot,
+                        context,
+                        command
+                    ).then(<span class="fstat-no" title="function not covered" >fu</span>nction(convo) {
+<span class="cstat-no" title="statement not covered" >                        convo.on('end', <span class="fstat-no" title="function not covered" >fu</span>nction(convo) {</span>
+<span class="cstat-no" title="statement not covered" >                            runHooks(</span>
+                                after_hooks[command.command] ? after_hooks[command.command].slice() : [],
+                                convo,
+<span class="fstat-no" title="function not covered" >                                fu</span>nction(convo) {
+<span class="cstat-no" title="statement not covered" >                                    controller.trigger('remote_command_end', [bot, context, command, convo]);</span>
+                                }
+                            );
+                        });
+<span class="cstat-no" title="statement not covered" >                        runHooks(</span>
+                            before_hooks[command.command] ? before_hooks[command.command].slice() : [],
+                            convo,
+<span class="fstat-no" title="function not covered" >                            fu</span>nction(convo) {
+<span class="cstat-no" title="statement not covered" >                                resolve(convo);</span>
+                            }
+                        );
+                    }).catch(<span class="fstat-no" title="function not covered" >fu</span>nction(err) {
+<span class="cstat-no" title="statement not covered" >                        reject(err);</span>
+                    });
+                } else {
+<span class="cstat-no" title="statement not covered" >                    reject('Script not found');</span>
+                }
+            }).catch(<span class="fstat-no" title="function not covered" >fu</span>nction(err) {
+<span class="cstat-no" title="statement not covered" >                reject(err);</span>
+            });
+&nbsp;
+        });
+    };
+&nbsp;
+    controller.studio.runTrigger = <span class="fstat-no" title="function not covered" >fu</span>nction(bot, input_text, user, channel, original_message) {
+        var context = <span class="cstat-no" title="statement not covered" >{</span>
+            text: input_text,
+            user: user,
+            channel: channel,
+            raw_message: original_message ? original_message.raw_message : null,
+            original_message: original_message || null
+        };
+<span class="cstat-no" title="statement not covered" >        return new Promise(<span class="fstat-no" title="function not covered" >fu</span>nction(resolve, reject) {</span>
+<span class="cstat-no" title="statement not covered" >            controller.studio.evaluateTrigger(bot, input_text).then(<span class="fstat-no" title="function not covered" >fu</span>nction(command) {</span>
+<span class="cstat-no" title="statement not covered" >                if (command !== {} &amp;&amp; command.id) {</span>
+<span class="cstat-no" title="statement not covered" >                    controller.trigger('command_triggered', [bot, context, command]);</span>
+&nbsp;
+                    // make the script source information from Botkit Studio available to Botkit's convo object
+<span class="cstat-no" title="statement not covered" >                    context.script_name = command.command;</span>
+<span class="cstat-no" title="statement not covered" >                    context.script_id = command._id;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    controller.studio.compileScript(</span>
+                        bot,
+                        context,
+                        command
+                    ).then(<span class="fstat-no" title="function not covered" >fu</span>nction(convo) {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        convo.on('end', <span class="fstat-no" title="function not covered" >fu</span>nction(convo) {</span>
+<span class="cstat-no" title="statement not covered" >                            runHooks(</span>
+                                after_hooks[command.command] ? after_hooks[command.command].slice() : [],
+                                convo,
+<span class="fstat-no" title="function not covered" >                                fu</span>nction(convo) {
+<span class="cstat-no" title="statement not covered" >                                    controller.trigger('remote_command_end', [bot, context, command, convo]);</span>
+                                }
+                            );
+                        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        runHooks(</span>
+                            before_hooks[command.command] ? before_hooks[command.command].slice() : [],
+                            convo,
+<span class="fstat-no" title="function not covered" >                            fu</span>nction(convo) {
+<span class="cstat-no" title="statement not covered" >                                convo.activate();</span>
+<span class="cstat-no" title="statement not covered" >                                resolve(convo);</span>
+                            }
+                        );
+                    }).catch(<span class="fstat-no" title="function not covered" >fu</span>nction(err) {
+<span class="cstat-no" title="statement not covered" >                        reject(err);</span>
+                    });
+                } else {
+                    /*
+                     * return with no conversation
+                     * allow developer to run a default script
+                     */
+<span class="cstat-no" title="statement not covered" >                    resolve(null);</span>
+                }
+            }).catch(<span class="fstat-no" title="function not covered" >fu</span>nction(err) {
+<span class="cstat-no" title="statement not covered" >                reject(err);</span>
+            });
+        });
+&nbsp;
+    };
+&nbsp;
+&nbsp;
+    controller.studio.testTrigger = <span class="fstat-no" title="function not covered" >fu</span>nction(bot, input_text) {
+<span class="cstat-no" title="statement not covered" >        return new Promise(<span class="fstat-no" title="function not covered" >fu</span>nction(resolve, reject) {</span>
+<span class="cstat-no" title="statement not covered" >            controller.studio.evaluateTrigger(bot, input_text).then(<span class="fstat-no" title="function not covered" >fu</span>nction(command) {</span>
+<span class="cstat-no" title="statement not covered" >                if (command !== {} &amp;&amp; command.id) {</span>
+<span class="cstat-no" title="statement not covered" >                    resolve(true);</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    resolve(false);</span>
+                }
+            }).catch(<span class="fstat-no" title="function not covered" >fu</span>nction(err) {
+<span class="cstat-no" title="statement not covered" >                reject(err);</span>
+            });
+        });
+&nbsp;
+    };
+&nbsp;
+&nbsp;
+    controller.studio.compileScript = <span class="fstat-no" title="function not covered" >fu</span>nction(bot, message, command) {
+        function <span class="fstat-no" title="function not covered" >makeHandler(</span>options, field) {
+            var pattern = <span class="cstat-no" title="statement not covered" >'';</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (options.type == 'utterance') {</span>
+<span class="cstat-no" title="statement not covered" >                pattern = controller.utterances[options.pattern];</span>
+            } else <span class="cstat-no" title="statement not covered" >if (options.type == 'string') {</span>
+                var p = <span class="cstat-no" title="statement not covered" >options.pattern;</span>
+<span class="cstat-no" title="statement not covered" >                p = p.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&amp;');</span>
+<span class="cstat-no" title="statement not covered" >                pattern = '^' + p + '$';</span>
+            } else <span class="cstat-no" title="statement not covered" >if (options.type == 'regex') {</span>
+<span class="cstat-no" title="statement not covered" >                pattern = options.pattern;</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return {</span>
+                pattern: pattern,
+                default: options.default,
+                callback: <span class="fstat-no" title="function not covered" >fu</span>nction(response, convo) {
+                    var hooks = <span class="cstat-no" title="statement not covered" >[];</span>
+<span class="cstat-no" title="statement not covered" >                    if (field.key &amp;&amp; answer_hooks[command.command] &amp;&amp; answer_hooks[command.command][field.key]) {</span>
+<span class="cstat-no" title="statement not covered" >                        hooks = answer_hooks[command.command][field.key].slice();</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    if (options.action != 'wait' &amp;&amp; field.multiple) {</span>
+<span class="cstat-no" title="statement not covered" >                        convo.responses[field.key].pop();</span>
+                    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    runHooks(hooks, convo, <span class="fstat-no" title="function not covered" >fu</span>nction(convo) {</span>
+<span class="cstat-no" title="statement not covered" >                        convo.handleAction(options);</span>
+                    });
+                }
+            };
+&nbsp;
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return new Promise(<span class="fstat-no" title="function not covered" >fu</span>nction(resolve, reject) {</span>
+<span class="cstat-no" title="statement not covered" >            bot.createConversation(message, <span class="fstat-no" title="function not covered" >fu</span>nction(err, convo) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (err) {</span>
+<span class="cstat-no" title="statement not covered" >                    return reject(err);</span>
+                }
+&nbsp;
+                // 15 minute default timeout
+<span class="cstat-no" title="statement not covered" >                convo.setTimeout(controller.config.default_timeout || (15 * 60 * 1000));</span>
+&nbsp;
+                // process any variables values and entities that came pre-defined as part of the script
+<span class="cstat-no" title="statement not covered" >                if (command.variables &amp;&amp; command.variables.length) {</span>
+<span class="cstat-no" title="statement not covered" >                    for (var v = 0; v &lt; command.variables.length; v++) {</span>
+<span class="cstat-no" title="statement not covered" >                        if (command.variables[v].value) {</span>
+&nbsp;
+                            /*
+                             * set the key/value as a mustache variable
+                             * accessible as {{vars.name}} in the templates
+                             */
+<span class="cstat-no" title="statement not covered" >                            convo.setVar(command.variables[v].name, command.variables[v].value);</span>
+&nbsp;
+                            /*
+                             * also add this as an "answer" to a question
+                             * thus making it available at {{responses.name}} and
+                             * convo.extractResponse(name);
+                             */
+<span class="cstat-no" title="statement not covered" >                            convo.responses[command.variables[v].name] = {</span>
+                                question: command.variables[v].name,
+                                text: command.variables[v].value,
+                            };
+                        }
+                    }
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                for (var t = 0; t &lt; command.script.length; t++) {</span>
+                    var topic = <span class="cstat-no" title="statement not covered" >command.script[t].topic;</span>
+<span class="cstat-no" title="statement not covered" >                    for (var m = 0; m &lt; command.script[t].script.length; m++) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        if (command.script[t].script[m].conditional) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                            convo.addConditional({</span>
+                                conditional: command.script[t].script[m].conditional
+                            }, topic);
+                        } else {
+&nbsp;
+                            var message = <span class="cstat-no" title="statement not covered" >{};</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                            if (command.script[t].script[m].text) {</span>
+<span class="cstat-no" title="statement not covered" >                                message.text = command.script[t].script[m].text;</span>
+                            }
+&nbsp;
+                            // handle platform specific fields
+<span class="cstat-no" title="statement not covered" >                            if (bot.type == 'ciscospark' || bot.type == 'webex') {</span>
+<span class="cstat-no" title="statement not covered" >                                if (command.script[t].script[m].platforms &amp;&amp; command.script[t].script[m].platforms.ciscospark) {</span>
+                                    // attach files.
+<span class="cstat-no" title="statement not covered" >                                    if (command.script[t].script[m].platforms.ciscospark.files) {</span>
+<span class="cstat-no" title="statement not covered" >                                        message.files = [];</span>
+<span class="cstat-no" title="statement not covered" >                                        for (var f = 0; f &lt; command.script[t].script[m].platforms.ciscospark.files.length; f++) {</span>
+<span class="cstat-no" title="statement not covered" >                                            message.files.push(command.script[t].script[m].platforms.ciscospark.files[f].url);</span>
+                                        }
+                                    }
+                                }
+                            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                            if (bot.type == 'web' || bot.type == 'socket') {</span>
+<span class="cstat-no" title="statement not covered" >                                if (command.script[t].script[m].platforms &amp;&amp; command.script[t].script[m].platforms.web) {</span>
+                                    // attach files.
+<span class="cstat-no" title="statement not covered" >                                    if (command.script[t].script[m].platforms.web.files) {</span>
+<span class="cstat-no" title="statement not covered" >                                        message.files = [];</span>
+<span class="cstat-no" title="statement not covered" >                                        for (var f = 0; f &lt; command.script[t].script[m].platforms.web.files.length; f++) {</span>
+&nbsp;
+                                            // determine if this is an image or any other type of file.
+<span class="cstat-no" title="statement not covered" >                                            command.script[t].script[m].platforms.web.files[f].image =</span>
+                                              (command.script[t].script[m].platforms.web.files[f].url.match(/\.(jpeg|jpg|gif|png)$/i) != null);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                                            message.files.push(command.script[t].script[m].platforms.web.files[f]);</span>
+                                        }
+                                    }
+                                }
+                            }
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                            if (bot.type == 'teams') {</span>
+<span class="cstat-no" title="statement not covered" >                                if (command.script[t].script[m].platforms &amp;&amp; command.script[t].script[m].platforms.teams) {</span>
+                                    // create attachments in the Botkit message
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                                    if (command.script[t].script[m].platforms &amp;&amp; command.script[t].script[m].platforms.teams.attachmentLayout) {</span>
+<span class="cstat-no" title="statement not covered" >                                        message.attachmentLayout = command.script[t].script[m].platforms &amp;&amp; command.script[t].script[m].platforms.teams.attachmentLayout;</span>
+                                    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                                    if (command.script[t].script[m].platforms.teams.attachments) {</span>
+<span class="cstat-no" title="statement not covered" >                                        message.attachments = [];</span>
+<span class="cstat-no" title="statement not covered" >                                        for (var a = 0; a &lt; command.script[t].script[m].platforms.teams.attachments.length; a++) {</span>
+                                            var data = <span class="cstat-no" title="statement not covered" >command.script[t].script[m].platforms.teams.attachments[a];</span>
+                                            var attachment = <span class="cstat-no" title="statement not covered" >{};</span>
+<span class="cstat-no" title="statement not covered" >                                            if (data.type == 'o365') {</span>
+<span class="cstat-no" title="statement not covered" >                                                attachment.contentType = 'application/vnd.microsoft.card.O365Connector'; </span>// + data.type,
+<span class="cstat-no" title="statement not covered" >                                                data['@type'] = 'MessageCard';</span>
+<span class="cstat-no" title="statement not covered" >                                                data['@context'] = 'http://schema.org/extensions';</span>
+<span class="cstat-no" title="statement not covered" >                                                delete(data.type);</span>
+<span class="cstat-no" title="statement not covered" >                                                attachment.content = data;</span>
+                                            } else <span class="cstat-no" title="statement not covered" >if (data.type != 'file') {</span>
+<span class="cstat-no" title="statement not covered" >                                                attachment = bot.createAttachment(data.type, data);</span>
+                                            } else {
+<span class="cstat-no" title="statement not covered" >                                                attachment.contentType = data.contentType;</span>
+<span class="cstat-no" title="statement not covered" >                                                attachment.contentUrl = data.contentUrl;</span>
+<span class="cstat-no" title="statement not covered" >                                                attachment.name = data.name;</span>
+&nbsp;
+                                            }
+<span class="cstat-no" title="statement not covered" >                                            message.attachments.push(attachment);</span>
+                                        }
+                                    }
+                                }
+                            }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+                            // handle Slack attachments
+<span class="cstat-no" title="statement not covered" >                            if (command.script[t].script[m].attachments) {</span>
+<span class="cstat-no" title="statement not covered" >                                message.attachments = command.script[t].script[m].attachments;</span>
+&nbsp;
+&nbsp;
+                                // enable mrkdwn formatting in all fields of the attachment
+<span class="cstat-no" title="statement not covered" >                                for (var a = 0; a &lt; message.attachments.length; a++) {</span>
+<span class="cstat-no" title="statement not covered" >                                    message.attachments[a].mrkdwn_in = ['text', 'pretext', 'fields'];</span>
+<span class="cstat-no" title="statement not covered" >                                    message.attachments[a].mrkdwn = true;</span>
+                                }
+                            }
+&nbsp;
+                            // handle Facebook attachments
+<span class="cstat-no" title="statement not covered" >                            if (command.script[t].script[m].fb_attachment) {</span>
+                                var attachment = <span class="cstat-no" title="statement not covered" >command.script[t].script[m].fb_attachment;</span>
+<span class="cstat-no" title="statement not covered" >                                if (attachment.template_type) {</span>
+<span class="cstat-no" title="statement not covered" >                                    if (attachment.template_type == 'button') {</span>
+<span class="cstat-no" title="statement not covered" >                                        attachment.text = message.text;</span>
+                                    }
+<span class="cstat-no" title="statement not covered" >                                    message.attachment = {</span>
+                                        type: 'template',
+                                        payload: attachment
+                                    };
+                                } else <span class="cstat-no" title="statement not covered" >if (attachment.type) {</span>
+<span class="cstat-no" title="statement not covered" >                                    message.attachment = attachment;</span>
+                                }
+&nbsp;
+                                // blank text, not allowed with attachment
+<span class="cstat-no" title="statement not covered" >                                message.text = null;</span>
+&nbsp;
+                                // remove blank button array if specified
+<span class="cstat-no" title="statement not covered" >                                if (message.attachment.payload.elements) {</span>
+<span class="cstat-no" title="statement not covered" >                                    for (var e = 0; e &lt; message.attachment.payload.elements.length; e++) {</span>
+<span class="cstat-no" title="statement not covered" >                                        if (!message.attachment.payload.elements[e].buttons || !message.attachment.payload.elements[e].buttons.length) {</span>
+<span class="cstat-no" title="statement not covered" >                                            delete(message.attachment.payload.elements[e].buttons);</span>
+                                        }
+                                    }
+                                }
+&nbsp;
+                            }
+&nbsp;
+                            // handle Facebook quick replies
+<span class="cstat-no" title="statement not covered" >                            if (command.script[t].script[m].quick_replies) {</span>
+                                var options = <span class="cstat-no" title="statement not covered" >command.script[t].script[m].quick_replies;</span>
+<span class="cstat-no" title="statement not covered" >                                if (!message.quick_replies) {</span>
+<span class="cstat-no" title="statement not covered" >                                    message.quick_replies = [];</span>
+                                }
+<span class="cstat-no" title="statement not covered" >                                for (var o = 0; o &lt; options.length; o++) {</span>
+<span class="cstat-no" title="statement not covered" >                                    message.quick_replies.push(options[o]);</span>
+                                }
+                            }
+&nbsp;
+                            // handle Facebook quick replies that are embedded in question options
+<span class="cstat-no" title="statement not covered" >                            if (command.script[t].script[m].collect) {</span>
+&nbsp;
+                                var options = <span class="cstat-no" title="statement not covered" >command.script[t].script[m].collect.options || [];</span>
+<span class="cstat-no" title="statement not covered" >                                if (options.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                                    for (var o = 0; o &lt; options.length; o++) {</span>
+<span class="cstat-no" title="statement not covered" >                                        if (options[o].fb_quick_reply) {</span>
+<span class="cstat-no" title="statement not covered" >                                            if (!message.quick_replies) {</span>
+<span class="cstat-no" title="statement not covered" >                                                message.quick_replies = [];</span>
+                                            }
+<span class="cstat-no" title="statement not covered" >                                            message.quick_replies.push({</span>
+                                                title: options[o].pattern,
+                                                payload: options[o].fb_quick_reply_payload,
+                                                image_url: options[o].fb_quick_reply_image_url,
+                                                content_type: options[o].fb_quick_reply_content_type,
+                                            });
+                                        }
+                                    }
+                                }
+                            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                            if (command.script[t].script[m].action) {</span>
+<span class="cstat-no" title="statement not covered" >                                message.action = command.script[t].script[m].action;</span>
+<span class="cstat-no" title="statement not covered" >                                if (command.script[t].script[m].execute) {</span>
+<span class="cstat-no" title="statement not covered" >                                    message.execute = command.script[t].script[m].execute;</span>
+                                }
+                            }
+&nbsp;
+                            // handle meta data
+<span class="cstat-no" title="statement not covered" >                            if (command.script[t].script[m].meta) {</span>
+<span class="cstat-no" title="statement not covered" >                                for (var a = 0; a &lt; command.script[t].script[m].meta.length; a++) {</span>
+<span class="cstat-no" title="statement not covered" >                                    message[command.script[t].script[m].meta[a].key] = command.script[t].script[m].meta[a].value;</span>
+                                }
+                            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                            if (command.script[t].script[m].collect) {</span>
+                                // this is a question message
+                                var capture_options = <span class="cstat-no" title="statement not covered" >{};</span>
+                                var handlers = <span class="cstat-no" title="statement not covered" >[];</span>
+                                var options = <span class="cstat-no" title="statement not covered" >command.script[t].script[m].collect.options || [];</span>
+<span class="cstat-no" title="statement not covered" >                                if (command.script[t].script[m].collect.key) {</span>
+<span class="cstat-no" title="statement not covered" >                                    capture_options.key = command.script[t].script[m].collect.key;</span>
+                                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                                if (command.script[t].script[m].collect.multiple) {</span>
+<span class="cstat-no" title="statement not covered" >                                    capture_options.multiple = true;</span>
+                                }
+&nbsp;
+                                var default_found = <span class="cstat-no" title="statement not covered" >false;</span>
+<span class="cstat-no" title="statement not covered" >                                for (var o = 0; o &lt; options.length; o++) {</span>
+                                    var handler = <span class="cstat-no" title="statement not covered" >makeHandler(options[o], capture_options);</span>
+<span class="cstat-no" title="statement not covered" >                                    handlers.push(handler);</span>
+<span class="cstat-no" title="statement not covered" >                                    if (options[o].default) {</span>
+<span class="cstat-no" title="statement not covered" >                                        default_found = true;</span>
+                                    }
+                                }
+&nbsp;
+                                // make sure there is a default
+<span class="cstat-no" title="statement not covered" >                                if (!default_found) {</span>
+<span class="cstat-no" title="statement not covered" >                                    handlers.push({</span>
+                                        default: true,
+                                        callback: <span class="fstat-no" title="function not covered" >fu</span>nction(r, c) {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                                            runHooks(</span>
+                                                answer_hooks[command.command] ? answer_hooks[command.command].slice() : [],
+                                                convo,
+<span class="fstat-no" title="function not covered" >                                                fu</span>nction() {
+<span class="cstat-no" title="statement not covered" >                                                    c.next();</span>
+                                                }
+                                            );
+                                        }
+                                    });
+                                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                                convo.addQuestion(message, handlers, capture_options, topic);</span>
+&nbsp;
+                            } else {
+&nbsp;
+                                // this is a simple message
+<span class="cstat-no" title="statement not covered" >                                convo.addMessage(message, topic);</span>
+                            }
+                        } // if !conditional
+                    }
+&nbsp;
+                    // add thread hooks if they have been defined.
+<span class="cstat-no" title="statement not covered" >                    if (thread_hooks[command.command] &amp;&amp; thread_hooks[command.command][topic]) {</span>
+<span class="cstat-no" title="statement not covered" >                        for (var h = 0; h &lt; thread_hooks[command.command][topic].length; h++) {</span>
+<span class="cstat-no" title="statement not covered" >                            convo.beforeThread(topic, thread_hooks[command.command][topic][h]);</span>
+                        }
+                    }
+&nbsp;
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                resolve(convo);</span>
+            });
+        });
+    };
+&nbsp;
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Dec 14 2018 14:56:57 GMT-0600 (Central Standard Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

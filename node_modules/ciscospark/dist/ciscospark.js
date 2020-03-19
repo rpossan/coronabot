@@ -1,0 +1,83 @@
+'use strict';
+
+/*!
+ * Copyright (c) 2015-2017 Cisco Systems, Inc. See LICENSE file.
+ */
+
+// Note: this file is written using commonjs instead of import/export to
+// simplify consumption by those less familiar with the current state of
+// JavaScript modularization
+
+/* eslint camelcase: [0] */
+
+require('@ciscospark/plugin-authorization');
+require('@ciscospark/plugin-phone');
+// explicitly load wdm, since we're relying on preDiscoveryServices and the
+// url interceptor
+require('@ciscospark/internal-plugin-wdm');
+require('@ciscospark/plugin-logger');
+require('@ciscospark/plugin-messages');
+require('@ciscospark/plugin-memberships');
+require('@ciscospark/plugin-people');
+require('@ciscospark/plugin-rooms');
+require('@ciscospark/plugin-teams');
+require('@ciscospark/plugin-team-memberships');
+require('@ciscospark/plugin-webhooks');
+
+var merge = require('lodash/merge');
+var SparkCore = require('@ciscospark/spark-core').default;
+
+var config = require('./config');
+
+// documentation.js puts hashes in relative urls, so need to specify full urls
+// here
+/**
+ * See {@link https://webex.github.io/spark-js-sdk/example/browsers|Browser Guide} and
+ * {@link https://webex.github.io/spark-js-sdk/example/servers|Server Guide}
+ * @see {@link /example/browsers|Browser Guide}
+ * @see {@link /example/servers|Server Guide}
+ * @class CiscoSpark
+ */
+var CiscoSpark = SparkCore.extend({
+  ciscospark: true,
+  version: '1.32.23'
+});
+
+CiscoSpark.version = '1.32.23';
+
+/**
+ * Create a new {@link CiscoSpark} instance
+ *
+ * @example
+ * <caption>Create a new CiscoSpark instance configured for your OAuth client</caption>
+ * const ciscospark = CiscoSpark.init({
+ *   config: {
+ *     credentials: {
+ *       authorizationString: `<AUTHORIZATION URL FROM DEVELOPER PORTAL>`
+ *     }
+ *   }
+ * });
+ *
+ * @example
+ * <caption>Create a new CiscoSpark instance configured for a Bot</caption>
+ * const ciscospark = CiscoSpark.init({
+ *   config: {
+ *     credentials: `<BOT TOKEN FROM DEVELOPER PORTAL>`
+ *   }
+ * });
+ *
+ *
+ * @param {Object} attrs
+ * @param {Object} attrs.config (optional)
+ * @memberof CiscoSpark
+ * @returns {CiscoSpark}
+ */
+CiscoSpark.init = function init() {
+  var attrs = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+  attrs.config = merge({}, config, attrs.config);
+  return new CiscoSpark(attrs);
+};
+
+module.exports = CiscoSpark;
+//# sourceMappingURL=ciscospark.js.map

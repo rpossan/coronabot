@@ -1,0 +1,1145 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/JabberGroupManager.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">All files</a> / <a href="index.html">lib</a> JabberGroupManager.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">5.35% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>10/187</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/87</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/30</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">5.35% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>10/187</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&nbsp;
+const Stanza = require('node-xmpp-client').Stanza;
+const MD5 = require('md5');
+&nbsp;
+var crypto = require('crypto')
+    , Element = require('ltx').Element;
+&nbsp;
+function <span class="fstat-no" title="function not covered" >sortProperty(</span>array, property) {
+<span class="cstat-no" title="statement not covered" >    array.sort(<span class="fstat-no" title="function not covered" >fu</span>nction(a, b) {</span>
+<span class="cstat-no" title="statement not covered" >        if (a[property] &gt; b[property]) {</span>
+<span class="cstat-no" title="statement not covered" >            return -1;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (a[property] &lt; b[property]) {</span>
+<span class="cstat-no" title="statement not covered" >            return 1;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return 0;</span>
+    });
+}
+&nbsp;
+function <span class="fstat-no" title="function not covered" >sortIdentities(</span>ids) {
+<span class="cstat-no" title="statement not covered" >    sortProperty(ids, 'category');</span>
+<span class="cstat-no" title="statement not covered" >    sortProperty(ids, 'type');</span>
+<span class="cstat-no" title="statement not covered" >    sortProperty(ids, 'lang');</span>
+}
+&nbsp;
+/**
+ * Capabilities
+ *
+ * @param {String} node Software identifier
+ * @param {String} [hash=sha-1] Hash to generate the version string (only sha-1 supported as of now)
+ * @constructor
+ */
+function <span class="fstat-no" title="function not covered" >Caps(</span>node, hash) {
+<span class="cstat-no" title="statement not covered" >    this.hash = (hash || 'sha-1').toLowerCase();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (this.hash !== 'sha-1') {</span>
+<span class="cstat-no" title="statement not covered" >        throw new Error('Invalid argument provided for hash. Only sha-1 supported');</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.node = node;</span>
+<span class="cstat-no" title="statement not covered" >    this.identities = [];</span>
+<span class="cstat-no" title="statement not covered" >    this.features = [];</span>
+}
+&nbsp;
+/**
+ * Add an identity
+ *
+ * @param {String} category
+ * @param {String} type
+ * @param {String} [name]
+ * @param {String} [lang]
+ *
+ * @returns {Caps}
+ */
+Caps.prototype.addIdentity = <span class="fstat-no" title="function not covered" >fu</span>nction(category, type, name, lang) {
+<span class="cstat-no" title="statement not covered" >    this.identities.push({</span>
+        category: category,
+        type: type,
+        lang: lang,
+        name: name
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+};
+&nbsp;
+/**
+ * Add supported feature
+ *
+ * @param {String} name Feature name (aka 'var')
+ *
+ * @returns {Caps}
+ */
+Caps.prototype.addFeature = <span class="fstat-no" title="function not covered" >fu</span>nction(name) {
+<span class="cstat-no" title="statement not covered" >    this.features.push(name);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+};
+&nbsp;
+/**
+ * Generates the version hash
+ *
+ * @returns {String}
+ */
+Caps.prototype.generateVersionHash = <span class="fstat-no" title="function not covered" >fu</span>nction() {
+    var str = <span class="cstat-no" title="statement not covered" >'';</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    sortIdentities(this.identities);</span>
+<span class="cstat-no" title="statement not covered" >    this.features.sort();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.identities.forEach(<span class="fstat-no" title="function not covered" >fu</span>nction(id) {</span>
+<span class="cstat-no" title="statement not covered" >        str += id.category + '/' + id.type + '/' +</span>
+            (id.lang || '') + '/' + (id.name || '');
+<span class="cstat-no" title="statement not covered" >        str += '&lt;';</span>
+    });
+<span class="cstat-no" title="statement not covered" >    str += this.features.join('&lt;');</span>
+<span class="cstat-no" title="statement not covered" >    str += '&lt;';</span>
+&nbsp;
+    var ver = <span class="cstat-no" title="statement not covered" >crypto.createHash('sha1');</span>
+<span class="cstat-no" title="statement not covered" >    ver.update(str);</span>
+<span class="cstat-no" title="statement not covered" >    ver = ver.digest('base64').toString();</span>
+<span class="cstat-no" title="statement not covered" >    return ver;</span>
+};
+&nbsp;
+/**
+ * Creates a 'c' node to be used in presence stanzas.
+ *
+ * @returns {Object}
+ */
+Caps.prototype.toCapsNode = <span class="fstat-no" title="function not covered" >fu</span>nction() {
+<span class="cstat-no" title="statement not covered" >    return new Element('c', {</span>
+        xmlns: 'http://jabber.org/protocol/caps',
+        hash: this.hash,
+        node: this.node,
+        ver: this.generateVersionHash()
+    });
+};
+&nbsp;
+/**
+ * Generates a disco#info query node from the identities and features we got.
+ *
+ * @returns {Element}
+ */
+Caps.prototype.toQueryNode = <span class="fstat-no" title="function not covered" >fu</span>nction() {
+    var el = <span class="cstat-no" title="statement not covered" >new Element('query', {</span>
+        xmlns: 'http://jabber.org/protocol/disco#info',
+        node: this.node + '#' + this.generateVersionHash()
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.identities.forEach(<span class="fstat-no" title="function not covered" >fu</span>nction(id) {</span>
+<span class="cstat-no" title="statement not covered" >        el.c('identity', id).up();</span>
+    });
+<span class="cstat-no" title="statement not covered" >    this.features.forEach(<span class="fstat-no" title="function not covered" >fu</span>nction(name) {</span>
+<span class="cstat-no" title="statement not covered" >        el.c('feature', {</span>
+            var: name
+        }).up();
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return el;</span>
+};
+&nbsp;
+function <span class="fstat-no" title="function not covered" >JabberGroupManager(</span>config, xmpp, bot, controller) {
+&nbsp;
+    var joinedRoomsPasswordMap = <span class="cstat-no" title="statement not covered" >new Map();</span>
+    var joinedPersistRoomsId = <span class="cstat-no" title="statement not covered" >new Set();</span>
+    var joinedRoomsId = <span class="cstat-no" title="statement not covered" >new Set();</span>
+&nbsp;
+    const bot_caps_node_addr = <span class="cstat-no" title="statement not covered" >'http://protocols.cisco.com/jabber-bot';</span>
+    var bot_caps = <span class="cstat-no" title="statement not covered" >createCapsNode(bot_caps_node_addr);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    xmpp.on('online', <span class="fstat-no" title="function not covered" >fu</span>nction() {</span>
+<span class="cstat-no" title="statement not covered" >        publishCapabilities();</span>
+<span class="cstat-no" title="statement not covered" >        joinPresetRooms();</span>
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    xmpp.on('stanza', <span class="fstat-no" title="function not covered" >fu</span>nction(stanza) {</span>
+<span class="cstat-no" title="statement not covered" >        if (stanza.is('iq')) {</span>
+<span class="cstat-no" title="statement not covered" >            handleCapabilityIq(stanza);</span>
+<span class="cstat-no" title="statement not covered" >            handleRoomDiscoQueryIq(stanza);</span>
+        } else <span class="cstat-no" title="statement not covered" >if (stanza.is('message')) {</span>
+<span class="cstat-no" title="statement not covered" >            handleInviteMessage(stanza);</span>
+        } else <span class="cstat-no" title="statement not covered" >if (stanza.is('presence')) {</span>
+<span class="cstat-no" title="statement not covered" >            handleMembershipPresence(stanza);</span>
+        }
+    });
+&nbsp;
+    function <span class="fstat-no" title="function not covered" >createCapsNode(</span>caps_node_addr) {
+        var bot_caps = <span class="cstat-no" title="statement not covered" >new Caps(caps_node_addr);</span>
+<span class="cstat-no" title="statement not covered" >        bot_caps.addIdentity('client', 'bot', 'Cisco Jabber Bot');</span>
+<span class="cstat-no" title="statement not covered" >        bot_caps.addFeature('http://jabber.org/protocol/caps');</span>
+<span class="cstat-no" title="statement not covered" >        bot_caps.addFeature('http://jabber.org/protocol/disco#info');</span>
+<span class="cstat-no" title="statement not covered" >        bot_caps.addFeature('http://jabber.org/protocol/disco#items');</span>
+<span class="cstat-no" title="statement not covered" >        bot_caps.addFeature('http://jabber.org/protocol/muc');</span>
+<span class="cstat-no" title="statement not covered" >        return bot_caps;</span>
+    }
+&nbsp;
+    function <span class="fstat-no" title="function not covered" >publishCapabilities(</span>) {
+        let presence_stanza = <span class="cstat-no" title="statement not covered" >new Stanza('presence');</span>
+<span class="cstat-no" title="statement not covered" >        presence_stanza.cnode(bot_caps.toCapsNode());</span>
+<span class="cstat-no" title="statement not covered" >        xmpp.conn.send(presence_stanza);</span>
+    }
+&nbsp;
+    function <span class="fstat-no" title="function not covered" >joinPresetRooms(</span>) {
+<span class="cstat-no" title="statement not covered" >        if (config.group &amp;&amp; config.group.rooms) {</span>
+<span class="cstat-no" title="statement not covered" >            for (let i = 0; i &lt; config.group.rooms.length; i++) {</span>
+                let room_id = <span class="cstat-no" title="statement not covered" >config.group.rooms[i].id;</span>
+                let password = <span class="cstat-no" title="statement not covered" >config.group.rooms[i].password;</span>
+<span class="cstat-no" title="statement not covered" >                if (!joinedRoomsId.has(getBareRoomId(room_id))) {</span>
+<span class="cstat-no" title="statement not covered" >                    joinedRoomsPasswordMap.set(getBareRoomId(room_id), password);</span>
+<span class="cstat-no" title="statement not covered" >                    xmpp.join(room_id, password);</span>
+                }
+            }
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.storage.teams.all(<span class="fstat-no" title="function not covered" >fu</span>nction(err, rooms) {</span>
+<span class="cstat-no" title="statement not covered" >            for (let i = 0; i &lt; rooms.length; i++) {</span>
+                let room = <span class="cstat-no" title="statement not covered" >rooms[i];</span>
+<span class="cstat-no" title="statement not covered" >                if (room.type === 'joined_persist_rooms') {</span>
+                    let room_id = <span class="cstat-no" title="statement not covered" >room.room_id + '/' + bot.client_jid;</span>
+                    let password = <span class="cstat-no" title="statement not covered" >room.password;</span>
+<span class="cstat-no" title="statement not covered" >                    if (!joinedRoomsId.has(getBareRoomId(room_id))) {</span>
+<span class="cstat-no" title="statement not covered" >                        joinedRoomsPasswordMap.set(getBareRoomId(room_id), password);</span>
+<span class="cstat-no" title="statement not covered" >                        xmpp.join(room_id, password);</span>
+                    }
+                }
+            }
+        });
+    }
+&nbsp;
+    function <span class="fstat-no" title="function not covered" >handleCapabilityIq(</span>stanza) {
+<span class="cstat-no" title="statement not covered" >        if (stanza.type === 'get') {</span>
+            let query = <span class="cstat-no" title="statement not covered" >stanza.getChild('query', 'http://jabber.org/protocol/disco#info');</span>
+<span class="cstat-no" title="statement not covered" >            if (query) {</span>
+                let caps_node = <span class="cstat-no" title="statement not covered" >query.attrs.node;</span>
+<span class="cstat-no" title="statement not covered" >                if (caps_node) {</span>
+                    let caps_node_addr = <span class="cstat-no" title="statement not covered" >caps_node.split('#')[0];</span>
+<span class="cstat-no" title="statement not covered" >                    if (bot_caps_node_addr == caps_node_addr) {</span>
+                        let from = <span class="cstat-no" title="statement not covered" >stanza.attrs.from;</span>
+                        let to = <span class="cstat-no" title="statement not covered" >stanza.attrs.to;</span>
+                        let disco_id = <span class="cstat-no" title="statement not covered" >stanza.id ? stanza.id : 'disco1';</span>
+                        let iq_stanza = <span class="cstat-no" title="statement not covered" >new Stanza('iq', { 'id': disco_id, 'type': 'result', 'to': from, 'from': to });</span>
+<span class="cstat-no" title="statement not covered" >                        iq_stanza.cnode(bot_caps.toQueryNode());</span>
+<span class="cstat-no" title="statement not covered" >                        xmpp.conn.send(iq_stanza);</span>
+                    }
+                }
+            }
+        }
+    }
+&nbsp;
+    function <span class="fstat-no" title="function not covered" >handleRoomDiscoQueryIq(</span>stanza) {
+<span class="cstat-no" title="statement not covered" >        if (stanza.attrs.type !== 'result')</span>
+<span class="cstat-no" title="statement not covered" >            return;</span>
+<span class="cstat-no" title="statement not covered" >        if (stanza.attrs.id !== 'room_disco1')</span>
+<span class="cstat-no" title="statement not covered" >            return;</span>
+        let jid = <span class="cstat-no" title="statement not covered" >stanza.attrs.to;</span>
+<span class="cstat-no" title="statement not covered" >        if (!jid)</span>
+<span class="cstat-no" title="statement not covered" >            return;</span>
+        let bareJid = <span class="cstat-no" title="statement not covered" >jid.split('/')[0];</span>
+<span class="cstat-no" title="statement not covered" >        if (bareJid.toLowerCase() !== bot.client_jid.toLowerCase())</span>
+<span class="cstat-no" title="statement not covered" >            return;</span>
+&nbsp;
+        let query = <span class="cstat-no" title="statement not covered" >stanza.getChild('query', 'http://jabber.org/protocol/disco#info');</span>
+<span class="cstat-no" title="statement not covered" >        if (!query)</span>
+<span class="cstat-no" title="statement not covered" >            return;</span>
+&nbsp;
+        let room_id = <span class="cstat-no" title="statement not covered" >stanza.attrs.from;</span>
+<span class="cstat-no" title="statement not covered" >        if (!room_id)</span>
+<span class="cstat-no" title="statement not covered" >            return;</span>
+&nbsp;
+        let features = <span class="cstat-no" title="statement not covered" >query.getChildren('feature');</span>
+<span class="cstat-no" title="statement not covered" >        for (let i = 0; i &lt; features.length; i++) {</span>
+            let feature = <span class="cstat-no" title="statement not covered" >features[i];</span>
+<span class="cstat-no" title="statement not covered" >            if (feature.attrs.var === 'persistent' ||</span>
+                feature.attrs.var === 'muc_persistent') {
+<span class="cstat-no" title="statement not covered" >                joinedPersistRoomsId.add(getBareRoomId(room_id));</span>
+                let password = <span class="cstat-no" title="statement not covered" >joinedRoomsPasswordMap.get(getBareRoomId(room_id));</span>
+<span class="cstat-no" title="statement not covered" >                saveJoinPersistRooms(getBareRoomId(room_id), password);</span>
+<span class="cstat-no" title="statement not covered" >                return;</span>
+            }
+        }
+    }
+&nbsp;
+    function <span class="fstat-no" title="function not covered" >handleInviteMessage(</span>stanza) {
+        let muc_message = <span class="cstat-no" title="statement not covered" >stanza.getChild('x', 'http://jabber.org/protocol/muc#user');</span>
+<span class="cstat-no" title="statement not covered" >        if (!muc_message)</span>
+<span class="cstat-no" title="statement not covered" >            return;</span>
+&nbsp;
+        let invite_node = <span class="cstat-no" title="statement not covered" >muc_message.getChild('invite');</span>
+<span class="cstat-no" title="statement not covered" >        if (!invite_node)</span>
+<span class="cstat-no" title="statement not covered" >            return;</span>
+&nbsp;
+        let password = <span class="cstat-no" title="statement not covered" >undefined;</span>
+        let password_node = <span class="cstat-no" title="statement not covered" >muc_message.getChild('password');</span>
+<span class="cstat-no" title="statement not covered" >        if (password_node)</span>
+<span class="cstat-no" title="statement not covered" >            password = password_node.getText();</span>
+        let room_id = <span class="cstat-no" title="statement not covered" >stanza.attrs.from + '/' + bot.client_jid;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (!joinedRoomsId.has(getBareRoomId(room_id))) {</span>
+<span class="cstat-no" title="statement not covered" >            joinedRoomsPasswordMap.set(getBareRoomId(room_id), password);</span>
+<span class="cstat-no" title="statement not covered" >            xmpp.join(room_id, password);</span>
+        }
+    }
+&nbsp;
+    function <span class="fstat-no" title="function not covered" >handleMembershipPresence(</span>stanza) {
+        let group_type = <span class="cstat-no" title="statement not covered" >stanza.getChild('x', 'http://jabber.org/protocol/muc#user');</span>
+<span class="cstat-no" title="statement not covered" >        if (!group_type)</span>
+<span class="cstat-no" title="statement not covered" >            return;</span>
+&nbsp;
+        let item = <span class="cstat-no" title="statement not covered" >group_type.getChild('item');</span>
+<span class="cstat-no" title="statement not covered" >        if (!item)</span>
+<span class="cstat-no" title="statement not covered" >            return;</span>
+&nbsp;
+        let jid = <span class="cstat-no" title="statement not covered" >item.attrs.jid;</span>
+<span class="cstat-no" title="statement not covered" >        if (!jid)</span>
+<span class="cstat-no" title="statement not covered" >            return;</span>
+        let bareJid = <span class="cstat-no" title="statement not covered" >jid.split('/')[0];</span>
+<span class="cstat-no" title="statement not covered" >        if (bareJid.toLowerCase() !== bot.client_jid.toLowerCase())</span>
+<span class="cstat-no" title="statement not covered" >            return;</span>
+&nbsp;
+        let room_id = <span class="cstat-no" title="statement not covered" >stanza.attrs.from;</span>
+<span class="cstat-no" title="statement not covered" >        if (item.attrs.role === 'none') {</span>
+            let status = <span class="cstat-no" title="statement not covered" >group_type.getChild('status');</span>
+<span class="cstat-no" title="statement not covered" >            if (status &amp;&amp; (status.attrs.code === '321' || status.attrs.code === '307')) {</span>
+<span class="cstat-no" title="statement not covered" >                joinedRoomsId.delete(getBareRoomId(room_id));</span>
+<span class="cstat-no" title="statement not covered" >                joinedRoomsPasswordMap.delete(getBareRoomId(room_id));</span>
+<span class="cstat-no" title="statement not covered" >                if (joinedPersistRoomsId.has(getBareRoomId(room_id))) {</span>
+<span class="cstat-no" title="statement not covered" >                    joinedPersistRoomsId.delete(getBareRoomId(room_id));</span>
+<span class="cstat-no" title="statement not covered" >                    saveLeavePersistRooms(getBareRoomId(room_id));</span>
+                }
+            }
+        } else <span class="cstat-no" title="statement not covered" >if (item.attrs.role === 'participant') {</span>
+<span class="cstat-no" title="statement not covered" >            joinedRoomsId.add(getBareRoomId(room_id));</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            sendRoomDiscoQueryIq(room_id, jid);</span>
+        }
+    }
+&nbsp;
+    function <span class="fstat-no" title="function not covered" >sendRoomDiscoQueryIq(</span>room_id, jid) {
+        let from = <span class="cstat-no" title="statement not covered" >jid;</span>
+        let to = <span class="cstat-no" title="statement not covered" >room_id.split('/')[0];</span>
+        let disco_id = <span class="cstat-no" title="statement not covered" >'room_disco1';</span>
+        let node = <span class="cstat-no" title="statement not covered" >to.split('@')[1];</span>
+        let iq_stanza = <span class="cstat-no" title="statement not covered" >new Stanza('iq', { 'id': disco_id, 'type': 'get', 'to': to, 'from': from });</span>
+<span class="cstat-no" title="statement not covered" >        iq_stanza.c('query', { xmlns: 'http://jabber.org/protocol/disco#info', 'node': node});</span>
+<span class="cstat-no" title="statement not covered" >        xmpp.conn.send(iq_stanza);</span>
+    }
+&nbsp;
+    function <span class="fstat-no" title="function not covered" >saveJoinPersistRooms(</span>room_id, room_password) {
+        let id = <span class="cstat-no" title="statement not covered" >MD5(room_id);</span>
+<span class="cstat-no" title="statement not covered" >        controller.storage.teams.get(id, <span class="fstat-no" title="function not covered" >fu</span>nction(err, room) {</span>
+<span class="cstat-no" title="statement not covered" >            if (!room) {</span>
+<span class="cstat-no" title="statement not covered" >                room = {</span>
+                    id: id,
+                };
+            }
+<span class="cstat-no" title="statement not covered" >            room.room_id = room_id;</span>
+<span class="cstat-no" title="statement not covered" >            room.password = room_password;</span>
+<span class="cstat-no" title="statement not covered" >            room.type = 'joined_persist_rooms';</span>
+<span class="cstat-no" title="statement not covered" >            controller.storage.teams.save(room, <span class="fstat-no" title="function not covered" >fu</span>nction(err) {</span>
+<span class="cstat-no" title="statement not covered" >                if (err) {</span>
+<span class="cstat-no" title="statement not covered" >                    console.error('Error saving room info:', err);</span>
+                }
+            });
+        });
+    }
+&nbsp;
+    function <span class="fstat-no" title="function not covered" >saveLeavePersistRooms(</span>room_id) {
+        let id = <span class="cstat-no" title="statement not covered" >MD5(room_id);</span>
+<span class="cstat-no" title="statement not covered" >        controller.storage.teams.delete(id, <span class="fstat-no" title="function not covered" >fu</span>nction(err) {</span>
+<span class="cstat-no" title="statement not covered" >            if (err) {</span>
+<span class="cstat-no" title="statement not covered" >                console.error('Error saving room info:', err);</span>
+            }
+        });
+    }
+&nbsp;
+    function <span class="fstat-no" title="function not covered" >getBareRoomId(</span>room_id) {
+<span class="cstat-no" title="statement not covered" >        return room_id.split('/')[0];</span>
+    }
+}
+&nbsp;
+module.exports = JabberGroupManager;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Dec 14 2018 14:56:57 GMT-0600 (Central Standard Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
