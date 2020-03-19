@@ -14,7 +14,7 @@ class CoronaQA {
     this.message = message;
     this.success = false;
     this.answers = [];
-    this.source = xlsx.parse('../knowledge/corona_qa.xlsx');
+    this.source = xlsx.parse('knowledge/corona_qa.xlsx');
     this.qas = this.getQAs();
   }
 
