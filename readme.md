@@ -13,4 +13,4 @@
 Web chatbot for questions and answers about Corona Virus in the World.
 In development, soon a better description.
 
-Acesse o Corona Bot online: http://
+Acesse o Corona Bot online: http://coronabot-web.herokuapp.com
