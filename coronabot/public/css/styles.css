@@ -142,7 +142,7 @@ a.button {
     flex-grow: 1;
     flex-direction: column-reverse;
     display: flex;
-    overflow-y: scroll; }
+    overflow-y: auto; }
 
     #message_window section div div {
       margin: 0.25rem;

@@ -62,7 +62,8 @@ module.exports = function(controller) {
   controller.on('message_received', function(bot, message) {
       bot.reply(message, {text: "Humn ... deixe me pensar ...", typing: true });
       questions_answers = new CoronaQA();
-      questions_answers.message = message.text;
+      var parsed_msg = message.text.replace('?','');
+      questions_answers.message = parsed_msg;
       console.log(questions_answers.message);
       if(questions_answers.processXL()){
         var text = "";
@@ -89,7 +90,7 @@ module.exports = function(controller) {
         });
       }else{
         bot.reply(message, {
-          text: 'I do not know how to respond to that message yet. [Chat with our support!](https://chatgem.herokuapp.com).',
+          text: 'Não entendi a sua mensagem. [Talvez um humano pode te ajudar!](https://chatgem.herokuapp.com).',
             quick_replies: replies
         });
       }

@@ -18,7 +18,7 @@ module.exports = function(controller) {
             { title: 'Help', payload: 'human', },
             { title: 'O que é o corona?', payload: 'corona', },
             { title: 'Como se previnir?', payload: 'como se previnir', },
-            { title: 'Como lavar as mãos?', payload: 'Como lavar as mãos?', },
+            { title: 'Como lavar as mãos?', payload: 'Como lavar as mãos', },
           ]
         });
       });
