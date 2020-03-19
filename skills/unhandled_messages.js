@@ -67,7 +67,7 @@ module.exports = function(controller) {
       console.log(questions_answers.message);
       if(questions_answers.processXL()){
         var text = "";
-        var replies = [{ title: 'Help', payload: 'help', }];
+        var replies = [{ title: 'Help', payload: 'human', }];
         if(questions_answers.answers.length > 1){
           text = "Humn ... não entendi direito a sua pergunta. Talvez esses assuntos façam sentido:"
           questions_answers.answers.forEach(function(a){

@@ -33,16 +33,8 @@ module.exports = function(controller) {
           text: 'I can point you to resources, and connect you with experts who can help.',
           quick_replies: [
             {
-              title: 'Read the Docs',
-              payload: 'documentation',
-            },
-            {
-              title: 'Join the Community',
-              payload: 'community',
-            },
-            {
-              title: 'Expert Help',
-              payload: 'contact us',
+              title: 'Vamos falar com uma pessoa?',
+              payload: 'human',
             },
           ]
         },[
