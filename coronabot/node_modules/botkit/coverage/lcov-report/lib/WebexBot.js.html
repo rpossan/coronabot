@@ -1,0 +1,1796 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/WebexBot.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">All files</a> / <a href="index.html">lib</a> WebexBot.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">2.07% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>5/242</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/116</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/48</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">2.11% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>5/237</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var Botkit = require(__dirname + '/CoreBot.js');
+var request = require('request');
+var url = require('url');
+var crypto = require('crypto');
+&nbsp;
+function <span class="fstat-no" title="function not covered" >WebexBot(</span>configuration) {
+&nbsp;
+    // Create a core botkit bot
+    var controller = <span class="cstat-no" title="statement not covered" >Botkit(configuration || {});</span>
+&nbsp;
+    // [COMPAT] Webex rebrand, see https://github.com/howdyai/botkit/issues/1346
+<span class="cstat-no" title="statement not covered" >    if (controller.config.ciscospark_access_token) {</span>
+<span class="cstat-no" title="statement not covered" >        console.warn('DEPRECATED: please switch your configuration property from "ciscospark_access_token" to "access_token"');</span>
+<span class="cstat-no" title="statement not covered" >        controller.config.access_token = controller.config.ciscospark_access_token;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (!controller.config.access_token) {</span>
+<span class="cstat-no" title="statement not covered" >        throw new Error('access_token required to create controller');</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >        controller.api = require('ciscospark').init({</span>
+            credentials: {
+                authorization: {
+                    access_token: controller.config.access_token
+                }
+            }
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (!controller.api) {</span>
+<span class="cstat-no" title="statement not covered" >            throw new Error('Could not create the Webex Teams API client');</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.api.people.get('me').then(<span class="fstat-no" title="function not covered" >fu</span>nction(identity) {</span>
+<span class="cstat-no" title="statement not covered" >            console.log('Webex: My identity is', identity);</span>
+<span class="cstat-no" title="statement not covered" >            controller.identity = identity;</span>
+        }).catch(<span class="fstat-no" title="function not covered" >fu</span>nction(err) {
+<span class="cstat-no" title="statement not covered" >            throw new Error(err);</span>
+        });
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (!controller.config.public_address) {</span>
+<span class="cstat-no" title="statement not covered" >        throw new Error('public_address parameter required to receive webhooks');</span>
+    } else {
+&nbsp;
+        var endpoint = <span class="cstat-no" title="statement not covered" >url.parse(controller.config.public_address);</span>
+<span class="cstat-no" title="statement not covered" >        if (!endpoint.hostname) {</span>
+<span class="cstat-no" title="statement not covered" >            throw new Error('Could not determine hostname of public address: ' + controller.config.public_address);</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >            controller.config.public_address = endpoint.hostname + (endpoint.port ? ':' + endpoint.port : '');</span>
+        }
+&nbsp;
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (!controller.config.secret) {</span>
+<span class="cstat-no" title="statement not covered" >        console.warn('WARNING: No secret specified. Source of incoming webhooks will not be validated. https://developer.webex.com/webhooks-explained.html#auth');</span>
+        // throw new Error('secret parameter required to secure webhooks');
+    }
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    controller.resetWebhookSubscriptions = <span class="fstat-no" title="function not covered" >fu</span>nction() {</span>
+<span class="cstat-no" title="statement not covered" >        controller.api.webhooks.list().then(<span class="fstat-no" title="function not covered" >fu</span>nction(list) {</span>
+<span class="cstat-no" title="statement not covered" >            for (var i = 0; i &lt; list.items.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >                controller.api.webhooks.remove(list.items[i]).then(<span class="fstat-no" title="function not covered" >fu</span>nction() {</span>
+                    // console.log('Removed subscription: ' + list.items[i].name);
+                }).catch(<span class="fstat-no" title="function not covered" >fu</span>nction(err) {
+<span class="cstat-no" title="statement not covered" >                    console.error('Error removing subscription:', err);</span>
+                });
+            }
+        });
+    };
+&nbsp;
+    // set up a web route for receiving outgoing webhooks and/or slash commands
+<span class="cstat-no" title="statement not covered" >    controller.createWebhookEndpoints = <span class="fstat-no" title="function not covered" >fu</span>nction(webserver, bot, cb) {</span>
+&nbsp;
+&nbsp;
+        var webhook_name = <span class="cstat-no" title="statement not covered" >controller.config.webhook_name || 'Botkit Firehose';</span>
+&nbsp;
+        var webhook_path = <span class="cstat-no" title="statement not covered" >'/webex/receive';</span>
+&nbsp;
+        // [COMPAT] Webex rebrand, see https://github.com/howdyai/botkit/issues/1346
+<span class="cstat-no" title="statement not covered" >        if (controller.config.ciscospark_access_token) {</span>
+<span class="cstat-no" title="statement not covered" >            compat_path = '/ciscospark/receive';</span>
+            var lines = <span class="cstat-no" title="statement not covered" >[</span>
+                'COMPATIBILITY: because we detected the "ciscospark_access_token" configuration property, ',
+                'the "' + compat_path +  '" path is used instead of "' + webhook_path + '"'
+            ];
+<span class="cstat-no" title="statement not covered" >            console.warn(lines.join(' '));</span>
+<span class="cstat-no" title="statement not covered" >            webhook_path = compat_path;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.log(</span>
+            '** Serving webhook endpoints for Webex Platform at: ' +
+            'http://' + controller.config.hostname + ':' + controller.config.port + webhook_path);
+<span class="cstat-no" title="statement not covered" >        webserver.post(webhook_path, <span class="fstat-no" title="function not covered" >fu</span>nction(req, res) {</span>
+<span class="cstat-no" title="statement not covered" >            res.sendStatus(200);</span>
+<span class="cstat-no" title="statement not covered" >            controller.handleWebhookPayload(req, res, bot);</span>
+&nbsp;
+        });
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.api.webhooks.list().then(<span class="fstat-no" title="function not covered" >fu</span>nction(list) {</span>
+            var hook_id = <span class="cstat-no" title="statement not covered" >null;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            for (var i = 0; i &lt; list.items.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >                if (list.items[i].name == webhook_name) {</span>
+<span class="cstat-no" title="statement not covered" >                    hook_id = list.items[i].id;</span>
+                }
+            }
+&nbsp;
+            var hook_url = <span class="cstat-no" title="statement not covered" >'https://' + controller.config.public_address + webhook_path;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            console.log('Webex: incoming webhook url is ', hook_url);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (hook_id) {</span>
+<span class="cstat-no" title="statement not covered" >                controller.api.webhooks.update({</span>
+                    id: hook_id,
+                    resource: 'all',
+                    targetUrl: hook_url,
+                    event: 'all',
+                    secret: controller.config.secret,
+                    name: webhook_name,
+                }).then(<span class="fstat-no" title="function not covered" >fu</span>nction() {
+<span class="cstat-no" title="statement not covered" >                    console.log('Webex: SUCCESSFULLY UPDATED WEBEX WEBHOOKS');</span>
+<span class="cstat-no" title="statement not covered" >                    if (cb) <span class="cstat-no" title="statement not covered" >cb();</span></span>
+                }).catch(<span class="fstat-no" title="function not covered" >fu</span>nction(err) {
+<span class="cstat-no" title="statement not covered" >                    console.error('FAILED TO REGISTER WEBHOOK', err);</span>
+<span class="cstat-no" title="statement not covered" >                    throw new Error(err);</span>
+                });
+&nbsp;
+            } else {
+<span class="cstat-no" title="statement not covered" >                controller.api.webhooks.create({</span>
+                    resource: 'all',
+                    targetUrl: hook_url,
+                    event: 'all',
+                    secret: controller.config.secret,
+                    name: webhook_name,
+                }).then(<span class="fstat-no" title="function not covered" >fu</span>nction() {
+<span class="cstat-no" title="statement not covered" >                    console.log('Webex: SUCCESSFULLY REGISTERED WEBEX WEBHOOKS');</span>
+<span class="cstat-no" title="statement not covered" >                    if (cb) <span class="cstat-no" title="statement not covered" >cb();</span></span>
+                }).catch(<span class="fstat-no" title="function not covered" >fu</span>nction(err) {
+<span class="cstat-no" title="statement not covered" >                    console.error('FAILED TO REGISTER WEBHOOK', err);</span>
+<span class="cstat-no" title="statement not covered" >                    throw new Error(err);</span>
+                });
+&nbsp;
+            }
+        }).catch(<span class="fstat-no" title="function not covered" >fu</span>nction(err) {
+<span class="cstat-no" title="statement not covered" >            throw new Error(err);</span>
+        });
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    controller.middleware.spawn.use(<span class="fstat-no" title="function not covered" >fu</span>nction(worker, next) {</span>
+&nbsp;
+        /*
+         * copy the identity that we get when the app initially boots up
+         * into the specific bot instance
+         */
+<span class="cstat-no" title="statement not covered" >        worker.identity = controller.identity;</span>
+<span class="cstat-no" title="statement not covered" >        next();</span>
+&nbsp;
+    });
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    controller.middleware.ingest.use(function <span class="fstat-no" title="function not covered" >limitUsers(</span>bot, message, res, next) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (controller.config.limit_to_org) {</span>
+<span class="cstat-no" title="statement not covered" >            if (!message.raw_message.orgId || message.raw_message.orgId != controller.config.limit_to_org) {</span>
+                // this message is from a user outside of the proscribed org
+<span class="cstat-no" title="statement not covered" >                console.warn('WARNING: this message is from a user outside of the proscribed org', controller.config.limit_to_org);</span>
+<span class="cstat-no" title="statement not covered" >                return false;</span>
+            }
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (controller.config.limit_to_domain) {</span>
+            var domains = <span class="cstat-no" title="statement not covered" >[];</span>
+<span class="cstat-no" title="statement not covered" >            if (typeof(controller.config.limit_to_domain) == 'string') {</span>
+<span class="cstat-no" title="statement not covered" >                domains = [controller.config.limit_to_domain];</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >                domains = controller.config.limit_to_domain;</span>
+            }
+&nbsp;
+            var addressParser = <span class="cstat-no" title="statement not covered" >require('email-addresses');</span>
+            var a = <span class="cstat-no" title="statement not covered" >addressParser.parseOneAddress(message.raw_message.data.personEmail);</span>
+&nbsp;
+            var allowed = <span class="cstat-no" title="statement not covered" >false;</span>
+<span class="cstat-no" title="statement not covered" >            for (var d = 0; d &lt; domains.length; d++) {</span>
+<span class="cstat-no" title="statement not covered" >                if (a.domain.toLowerCase() == domains[d]) {</span>
+<span class="cstat-no" title="statement not covered" >                    allowed = true;</span>
+                }
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (!allowed) {</span>
+<span class="cstat-no" title="statement not covered" >                console.warn('WARNING: this message came from a domain that is outside of the allowed list', controller.config.limit_to_domain);</span>
+                // this message came from a domain that is outside of the allowed list.
+<span class="cstat-no" title="statement not covered" >                return false;</span>
+            }
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        next();</span>
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    controller.middleware.normalize.use(function <span class="fstat-no" title="function not covered" >getDecryptedMessage(</span>bot, message, next) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (message.resource == 'messages' &amp;&amp; message.event == 'created') {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            controller.api.messages.get(message.data).then(<span class="fstat-no" title="function not covered" >fu</span>nction(decrypted_message) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                message.userId = decrypted_message.personId;</span>
+<span class="cstat-no" title="statement not covered" >                message.user = decrypted_message.personEmail;</span>
+<span class="cstat-no" title="statement not covered" >                message.channel = decrypted_message.roomId;</span>
+<span class="cstat-no" title="statement not covered" >                message.text = decrypted_message.text;</span>
+<span class="cstat-no" title="statement not covered" >                message.html = decrypted_message.html;</span>
+<span class="cstat-no" title="statement not covered" >                message.id = decrypted_message.id;</span>
+&nbsp;
+                // remove @mentions of the bot from the source text before we ingest it
+<span class="cstat-no" title="statement not covered" >                if (message.html) {</span>
+&nbsp;
+                    // strip the mention &amp; HTML from the message
+                    var pattern = <span class="cstat-no" title="statement not covered" >new RegExp('^(\&lt;p\&gt;)?\&lt;spark\-mention .*?data\-object\-id\=\"' + controller.identity.id + '\".*?\&gt;.*?\&lt;\/spark\-mention\&gt;', 'im');</span>
+<span class="cstat-no" title="statement not covered" >                    if (!message.html.match(pattern)) {</span>
+                        var encoded_id = <span class="cstat-no" title="statement not covered" >controller.identity.id;</span>
+                        var decoded = <span class="cstat-no" title="statement not covered" >new Buffer(encoded_id, 'base64').toString('ascii');</span>
+&nbsp;
+                        // this should look like ciscospark://us/PEOPLE/&lt;id string&gt;
+                        var matches;
+<span class="cstat-no" title="statement not covered" >                        if (matches = decoded.match(/ciscospark\:\/\/.*\/(.*)/im)) {</span>
+<span class="cstat-no" title="statement not covered" >                            pattern = new RegExp('^(\&lt;p\&gt;)?\&lt;spark\-mention .*?data\-object\-id\=\"' + matches[1] + '\".*?\&gt;.*?\&lt;\/spark\-mention\&gt;', 'im');</span>
+                        }
+                    }
+                    var action = <span class="cstat-no" title="statement not covered" >message.html.replace(pattern, '');</span>
+&nbsp;
+&nbsp;
+                    // strip the remaining HTML tags
+<span class="cstat-no" title="statement not covered" >                    action = action.replace(/\&lt;.*?\&gt;/img, '');</span>
+&nbsp;
+                    // strip remaining whitespace
+<span class="cstat-no" title="statement not covered" >                    action = action.trim();</span>
+&nbsp;
+                    // replace the message text with the the HTML version
+<span class="cstat-no" title="statement not covered" >                    message.text = action;</span>
+&nbsp;
+                } else {
+                    var pattern = <span class="cstat-no" title="statement not covered" >new RegExp('^' + controller.identity.displayName + '\\s+', 'i');</span>
+<span class="cstat-no" title="statement not covered" >                    if (message.text) {</span>
+<span class="cstat-no" title="statement not covered" >                        message.text = message.text.replace(pattern, '');</span>
+                    }
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                next();</span>
+&nbsp;
+            }).catch(<span class="fstat-no" title="function not covered" >fu</span>nction(err) {
+<span class="cstat-no" title="statement not covered" >                console.error('Could not get message', err);</span>
+            });
+        } else {
+<span class="cstat-no" title="statement not covered" >            next();</span>
+        }
+&nbsp;
+&nbsp;
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    controller.middleware.normalize.use(function <span class="fstat-no" title="function not covered" >handleEvents(</span>bot, message, next) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (message.resource != 'messages' || message.event != 'created') {</span>
+&nbsp;
+            var event = <span class="cstat-no" title="statement not covered" >message.resource + '.' + message.event;</span>
+<span class="cstat-no" title="statement not covered" >            message.userId = message.data.personId;</span>
+<span class="cstat-no" title="statement not covered" >            message.user = message.data.personEmail;</span>
+<span class="cstat-no" title="statement not covered" >            message.channel = message.data.roomId;</span>
+<span class="cstat-no" title="statement not covered" >            message.id = message.data.id;</span>
+<span class="cstat-no" title="statement not covered" >            message.type = event;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            switch (event) {</span>
+                case 'memberships.deleted':
+<span class="cstat-no" title="statement not covered" >                    if (message.userId === controller.identity.id) {</span>
+<span class="cstat-no" title="statement not covered" >                        message.type = 'bot_space_leave';</span>
+                    } else {
+<span class="cstat-no" title="statement not covered" >                        message.type = 'user_space_leave';</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+                case 'memberships.created':
+<span class="cstat-no" title="statement not covered" >                    if (message.userId === controller.identity.id) {</span>
+<span class="cstat-no" title="statement not covered" >                        message.type = 'bot_space_join';</span>
+                    } else {
+<span class="cstat-no" title="statement not covered" >                        message.type = 'user_space_join';</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+            }
+        }
+<span class="cstat-no" title="statement not covered" >        next();</span>
+&nbsp;
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    controller.middleware.categorize.use(<span class="fstat-no" title="function not covered" >fu</span>nction(bot, message, next) {</span>
+&nbsp;
+        // further categorize messages
+<span class="cstat-no" title="statement not covered" >        if (message.type == 'message_received') {</span>
+<span class="cstat-no" title="statement not covered" >            if (message.userId === controller.identity.id) {</span>
+<span class="cstat-no" title="statement not covered" >                message.type = 'self_message';</span>
+            } else <span class="cstat-no" title="statement not covered" >if (message.raw_message.data.roomType == 'direct') {</span>
+<span class="cstat-no" title="statement not covered" >                message.type = 'direct_message';</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >                message.type = 'direct_mention';</span>
+            }
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        next();</span>
+&nbsp;
+    });
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    controller.middleware.format.use(<span class="fstat-no" title="function not covered" >fu</span>nction(bot, message, platform_message, next) {</span>
+&nbsp;
+        // clone the incoming message
+<span class="cstat-no" title="statement not covered" >        for (var k in message) {</span>
+<span class="cstat-no" title="statement not covered" >            platform_message[k] = message[k];</span>
+        }
+&nbsp;
+        // mutate the message into proper Webex Teams format
+<span class="cstat-no" title="statement not covered" >        platform_message.roomId = message.channel;</span>
+<span class="cstat-no" title="statement not covered" >        delete platform_message.channel;</span>
+&nbsp;
+        // delete reference to recipient
+<span class="cstat-no" title="statement not covered" >        delete platform_message.to;</span>
+&nbsp;
+        // default the markdown field to be the same as tex.
+<span class="cstat-no" title="statement not covered" >        if (platform_message.text &amp;&amp; !platform_message.markdown) {</span>
+<span class="cstat-no" title="statement not covered" >            platform_message.markdown = message.text;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        next();</span>
+&nbsp;
+    });
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    controller.handleWebhookPayload = <span class="fstat-no" title="function not covered" >fu</span>nction(req, res, bot) {</span>
+&nbsp;
+        var payload = <span class="cstat-no" title="statement not covered" >req.body;</span>
+<span class="cstat-no" title="statement not covered" >        if (controller.config.secret) {</span>
+            var signature = <span class="cstat-no" title="statement not covered" >req.headers['x-spark-signature'];</span>
+            var hash = <span class="cstat-no" title="statement not covered" >crypto.createHmac('sha1', controller.config.secret).update(JSON.stringify(payload)).digest('hex');</span>
+<span class="cstat-no" title="statement not covered" >            if (signature != hash) {</span>
+<span class="cstat-no" title="statement not covered" >                console.error('WARNING: Webhook received message with invalid signature. Potential malicious behavior!');</span>
+<span class="cstat-no" title="statement not covered" >                return false;</span>
+            }
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.ingest(bot, req.body, res);</span>
+&nbsp;
+    };
+&nbsp;
+    /*
+     * customize the bot definition, which will be used when new connections
+     * spawn!
+     */
+<span class="cstat-no" title="statement not covered" >    controller.defineBot(<span class="fstat-no" title="function not covered" >fu</span>nction(botkit, config) {</span>
+&nbsp;
+        var bot = <span class="cstat-no" title="statement not covered" >{</span>
+            type: 'webex',
+            botkit: botkit,
+            config: config || {},
+            utterances: botkit.utterances,
+        };
+&nbsp;
+        /**
+         * Convenience method for creating a DM convo.
+         */
+<span class="cstat-no" title="statement not covered" >        bot.startPrivateConversation = <span class="fstat-no" title="function not covered" >fu</span>nction(message, cb) {</span>
+&nbsp;
+            var message_options = <span class="cstat-no" title="statement not covered" >{};</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            message_options.toPersonEmail = message.user;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            botkit.startTask(bot, message_options, <span class="fstat-no" title="function not covered" >fu</span>nction(task, convo) {</span>
+<span class="cstat-no" title="statement not covered" >                convo.on('sent', <span class="fstat-no" title="function not covered" >fu</span>nction(sent_message) {</span>
+                    /*
+                     * update this convo so that future messages will match
+                     * since the source message did not have this info in it.
+                     */
+<span class="cstat-no" title="statement not covered" >                    convo.source_message.user = message_options.toPersonEmail;</span>
+<span class="cstat-no" title="statement not covered" >                    convo.source_message.channel = sent_message.roomId;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    convo.context.user = convo.source_message.user;</span>
+<span class="cstat-no" title="statement not covered" >                    convo.context.channel = convo.source_message.channel;</span>
+&nbsp;
+                });
+<span class="cstat-no" title="statement not covered" >                cb(null, convo);</span>
+            });
+        };
+&nbsp;
+&nbsp;
+        /**
+         * Convenience method for creating a DM based on a personId instead of email
+         */
+<span class="cstat-no" title="statement not covered" >        bot.startPrivateConversationWithPersonId = <span class="fstat-no" title="function not covered" >fu</span>nction(personId, cb) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            controller.api.people.get(personId).then(<span class="fstat-no" title="function not covered" >fu</span>nction(identity) {</span>
+<span class="cstat-no" title="statement not covered" >                bot.startPrivateConversation({user: identity.emails[0]}, cb);</span>
+            }).catch(<span class="fstat-no" title="function not covered" >fu</span>nction(err) {
+<span class="cstat-no" title="statement not covered" >                cb(err);</span>
+            });
+        };
+&nbsp;
+&nbsp;
+        /**
+         * Convenience method for creating a DM convo with the `actor`, not the sender
+         * this applies to events like channel joins, where the actor may be the user who sent the invite
+         */
+<span class="cstat-no" title="statement not covered" >        bot.startPrivateConversationWithActor = <span class="fstat-no" title="function not covered" >fu</span>nction(message, cb) {</span>
+<span class="cstat-no" title="statement not covered" >            bot.startPrivateConversationWithPersonId(message.raw_message.actorId, cb);</span>
+        };
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        bot.send = <span class="fstat-no" title="function not covered" >fu</span>nction(message, cb) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            controller.api.messages.create(message).then(<span class="fstat-no" title="function not covered" >fu</span>nction(message) {</span>
+<span class="cstat-no" title="statement not covered" >                if (cb) <span class="cstat-no" title="statement not covered" >cb(null, message);</span></span>
+            }).catch(<span class="fstat-no" title="function not covered" >fu</span>nction(err) {
+<span class="cstat-no" title="statement not covered" >                if (cb) <span class="cstat-no" title="statement not covered" >cb(err);</span></span>
+            });
+&nbsp;
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        bot.reply = <span class="fstat-no" title="function not covered" >fu</span>nction(src, resp, cb) {</span>
+            var msg = <span class="cstat-no" title="statement not covered" >{};</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (typeof(resp) == 'string') {</span>
+<span class="cstat-no" title="statement not covered" >                msg.text = resp;</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >                msg = resp;</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (src.channel) {</span>
+<span class="cstat-no" title="statement not covered" >                msg.channel = src.channel;</span>
+            } else <span class="cstat-no" title="statement not covered" >if (src.toPersonEmail) {</span>
+<span class="cstat-no" title="statement not covered" >                msg.toPersonEmail = src.toPersonEmail;</span>
+            } else <span class="cstat-no" title="statement not covered" >if (src.toPersonId) {</span>
+<span class="cstat-no" title="statement not covered" >                msg.toPersonId = src.toPersonId;</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            msg.to = src.user;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            bot.say(msg, cb);</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        bot.findConversation = <span class="fstat-no" title="function not covered" >fu</span>nction(message, cb) {</span>
+<span class="cstat-no" title="statement not covered" >            botkit.debug('CUSTOM FIND CONVO', message.user, message.channel);</span>
+<span class="cstat-no" title="statement not covered" >            for (var t = 0; t &lt; botkit.tasks.length; t++) {</span>
+<span class="cstat-no" title="statement not covered" >                for (var c = 0; c &lt; botkit.tasks[t].convos.length; c++) {</span>
+<span class="cstat-no" title="statement not covered" >                    if (</span>
+                        botkit.tasks[t].convos[c].isActive() &amp;&amp;
+                        botkit.tasks[t].convos[c].source_message.user == message.user &amp;&amp;
+                        botkit.tasks[t].convos[c].source_message.channel == message.channel &amp;&amp;
+                        botkit.excludedEvents.indexOf(message.type) == -1 // this type of message should not be included
+                    ) {
+<span class="cstat-no" title="statement not covered" >                        botkit.debug('FOUND EXISTING CONVO!');</span>
+<span class="cstat-no" title="statement not covered" >                        cb(botkit.tasks[t].convos[c]);</span>
+<span class="cstat-no" title="statement not covered" >                        return;</span>
+                    }
+                }
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            cb();</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        bot.retrieveFileInfo = <span class="fstat-no" title="function not covered" >fu</span>nction(url, cb) {</span>
+<span class="cstat-no" title="statement not covered" >            request.head({</span>
+                url: url,
+                headers: {
+                    'Authorization': 'Bearer ' + controller.config.access_token
+                },
+            }, <span class="fstat-no" title="function not covered" >fu</span>nction(err, response) {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (!err) {</span>
+                    var obj = <span class="cstat-no" title="statement not covered" >response.headers;</span>
+<span class="cstat-no" title="statement not covered" >                    if (obj['content-disposition']) {</span>
+<span class="cstat-no" title="statement not covered" >                        obj.filename = obj['content-disposition'].replace(/.*filename=\"(.*)\".*/gi, '$1');</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    cb(null, obj);</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    cb(err);</span>
+                }
+&nbsp;
+            });
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        bot.retrieveFile = <span class="fstat-no" title="function not covered" >fu</span>nction(url, cb) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            request({</span>
+                url: url,
+                headers: {
+                    'Authorization': 'Bearer ' + controller.config.access_token
+                },
+                encoding: 'binary',
+            }, <span class="fstat-no" title="function not covered" >fu</span>nction(err, response, body) {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                cb(err, body);</span>
+&nbsp;
+            });
+&nbsp;
+        };
+&nbsp;
+&nbsp;
+        /*
+         * return info about the specific instance of this bot
+         * including identity information, and any other info that is relevant
+         */
+<span class="cstat-no" title="statement not covered" >        bot.getInstanceInfo = <span class="fstat-no" title="function not covered" >fu</span>nction(cb) {</span>
+<span class="cstat-no" title="statement not covered" >            return new Promise(<span class="fstat-no" title="function not covered" >fu</span>nction(resolve, reject) {</span>
+                var instance = <span class="cstat-no" title="statement not covered" >{</span>
+                    identity: {},
+                    team: {},
+                };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                controller.api.people.get('me').then(<span class="fstat-no" title="function not covered" >fu</span>nction(identity) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    instance.identity.name = identity.displayName;</span>
+<span class="cstat-no" title="statement not covered" >                    instance.identity.id = identity.id;</span>
+<span class="cstat-no" title="statement not covered" >                    instance.team.id = identity.orgId;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    if (cb) <span class="cstat-no" title="statement not covered" >cb(null, instance);</span></span>
+<span class="cstat-no" title="statement not covered" >                    resolve(instance);</span>
+&nbsp;
+                }).catch(reject);
+            });
+        };
+<span class="cstat-no" title="statement not covered" >        bot.getMessageUser = <span class="fstat-no" title="function not covered" >fu</span>nction(message, cb) {</span>
+<span class="cstat-no" title="statement not covered" >            return new Promise(<span class="fstat-no" title="function not covered" >fu</span>nction(resolve, reject) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                controller.api.people.list({email: message.user}).then(<span class="fstat-no" title="function not covered" >fu</span>nction(identity) {</span>
+<span class="cstat-no" title="statement not covered" >                    if (identity.length) {</span>
+<span class="cstat-no" title="statement not covered" >                        identity = identity.items[0];</span>
+                    } else {
+<span class="cstat-no" title="statement not covered" >                        if (cb) {</span>
+<span class="cstat-no" title="statement not covered" >                            cb('User not found');</span>
+                        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        return reject('User not found');</span>
+                    }
+&nbsp;
+                    // normalize this into what botkit wants to see
+                    var profile = <span class="cstat-no" title="statement not covered" >{</span>
+                        id: identity.id,
+                        username: identity.displayName,
+                        first_name: identity.firstName,
+                        last_name: identity.lastName,
+                        full_name: (identity.firstName &amp;&amp; identity.lastName) ? identity.firstName + ' ' + identity.lastName : '',
+                        email: identity.emails[0],
+                        gender: null, // no source for this info
+                        timezone_offset: null, // no source for this info
+                        timezone: identity.timezone, // this MAY be set depending on user settings
+                    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    if (cb) {</span>
+<span class="cstat-no" title="statement not covered" >                        cb(null, profile);</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    resolve(profile);</span>
+&nbsp;
+                }).catch(<span class="fstat-no" title="function not covered" >fu</span>nction(err) {
+<span class="cstat-no" title="statement not covered" >                    if (cb) {</span>
+<span class="cstat-no" title="statement not covered" >                        cb(err);</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    reject(err);</span>
+                });
+            });
+&nbsp;
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return bot;</span>
+&nbsp;
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    controller.startTicking();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return controller;</span>
+&nbsp;
+}
+&nbsp;
+&nbsp;
+module.exports = WebexBot;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Dec 14 2018 14:56:57 GMT-0600 (Central Standard Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

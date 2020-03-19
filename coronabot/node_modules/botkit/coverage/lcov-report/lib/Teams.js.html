@@ -1,0 +1,1880 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/Teams.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">All files</a> / <a href="index.html">lib</a> Teams.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">10.48% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>24/229</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">3.23% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>4/124</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4.35% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>2/46</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">10.57% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>24/227</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606</td><td class="line-coverage quiet"><span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var Botkit = require(__dirname + '/CoreBot.js');
+var clone = require('clone');
+var async = require('async');
+var TeamsAPI = require(__dirname + '/TeamsAPI.js');
+&nbsp;
+function TeamsBot(configuration) {
+    var controller = Botkit(configuration || <span class="branch-1 cbranch-no" title="branch not covered" >{})</span>;
+&nbsp;
+    controller.api = TeamsAPI(configuration || <span class="branch-1 cbranch-no" title="branch not covered" >{})</span>;
+    function tokenHandler(err) {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
+            // this is a fatal error - could not create a Teams API client
+<span class="cstat-no" title="statement not covered" >            throw new Error(err);</span>
+        }
+        //use the expires_in value, convert to ms and remove 10 mins in ms
+        let tokenExpiresIn = (configuration.token_expires_in || <span class="branch-1 cbranch-no" title="branch not covered" >3600)</span> * 1000;
+        let expiryCheckDelta = 1000 * 60 * 10;
+        setTimeout(controller.api.getToken, (tokenExpiresIn - expiryCheckDelta), tokenHandler);
+    }
+    controller.api.getToken(tokenHandler);
+&nbsp;
+    controller.defineBot(<span class="fstat-no" title="function not covered" >fu</span>nction(botkit, config) {
+        var bot = <span class="cstat-no" title="statement not covered" >{</span>
+            type: 'teams',
+            botkit: botkit,
+            config: config || {},
+            utterances: botkit.utterances
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        bot.startConversation = <span class="fstat-no" title="function not covered" >fu</span>nction(message, cb) {</span>
+<span class="cstat-no" title="statement not covered" >            botkit.startConversation(this, message, cb);</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        bot.createConversation = <span class="fstat-no" title="function not covered" >fu</span>nction(message, cb) {</span>
+<span class="cstat-no" title="statement not covered" >            botkit.createConversation(this, message, cb);</span>
+        };
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        bot.channelLink = <span class="fstat-no" title="function not covered" >fu</span>nction(channel_info) {</span>
+<span class="cstat-no" title="statement not covered" >            return '&lt;a href="https://teams.microsoft.com/l/channel/' + channel_info.id + '/' + channel_info.name + '"&gt;' + channel_info.name + '&lt;/a&gt;';</span>
+        };
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        bot.startPrivateConversation = <span class="fstat-no" title="function not covered" >fu</span>nction(message, cb) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            bot.createPrivateConversation(message, <span class="fstat-no" title="function not covered" >fu</span>nction(err, new_convo) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (err) {</span>
+<span class="cstat-no" title="statement not covered" >                    cb(err);</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    new_convo.activate();</span>
+<span class="cstat-no" title="statement not covered" >                    cb(null, new_convo);</span>
+                }
+&nbsp;
+            });
+&nbsp;
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        bot.createPrivateConversation = <span class="fstat-no" title="function not covered" >fu</span>nction(message, cb) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            bot.openPrivateConvo(message, <span class="fstat-no" title="function not covered" >fu</span>nction(err, new_convo) {</span>
+<span class="cstat-no" title="statement not covered" >                if (err) {</span>
+<span class="cstat-no" title="statement not covered" >                    cb(err);</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    message.raw_message.conversation = new_convo;</span>
+<span class="cstat-no" title="statement not covered" >                    bot.createConversation(message, cb);</span>
+                }
+            });
+&nbsp;
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        bot.openPrivateConvo = <span class="fstat-no" title="function not covered" >fu</span>nction(src, cb) {</span>
+&nbsp;
+            var data = <span class="cstat-no" title="statement not covered" >{</span>
+                bot: src.recipient,
+                members: [src.raw_message.from],
+                channelData: src.channelData,
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            bot.api.createConversation(data, cb);</span>
+&nbsp;
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        bot.openConvo = <span class="fstat-no" title="function not covered" >fu</span>nction(src, members, cb) {</span>
+&nbsp;
+            var data = <span class="cstat-no" title="statement not covered" >{</span>
+                isGroup: true,
+                bot: src.recipient,
+                members: members,
+                channelData: src.channelData,
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            bot.api.createConversation(data, cb);</span>
+        };
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        bot.send = <span class="fstat-no" title="function not covered" >fu</span>nction(message, cb) {</span>
+<span class="cstat-no" title="statement not covered" >            bot.api.addMessageToConversation(message.conversation.id, message, cb);</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        bot.replyWithActivity = <span class="fstat-no" title="function not covered" >fu</span>nction(src, message, cb) {</span>
+&nbsp;
+            var data = <span class="cstat-no" title="statement not covered" >{</span>
+                type: 'message',
+                recipient: src.raw_message.from,
+                from: src.raw_message.recipient,
+                conversation: src.conversation,
+                channelData: {
+                    notification: {
+                        alert: true
+                    }
+                },
+                text: message.text,
+                summary: message.summary,
+                attachments: message.attachments || null,
+                attachmentLayout: message.attachmentLayout || 'list',
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            bot.api.addMessageToConversation(src.conversation.id, data, cb);</span>
+        };
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        bot.replyToComposeExtension = <span class="fstat-no" title="function not covered" >fu</span>nction(src, attachments, cb) {</span>
+&nbsp;
+            /*
+             * attachments will be an array of attachments
+             * need to wrap it in necessary stuff
+             */
+            var resp = <span class="cstat-no" title="statement not covered" >{</span>
+                composeExtension: {
+                    type: 'result',
+                    attachmentLayout: 'list',
+                    attachments: attachments,
+                }
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            src.http_res.send(resp);</span>
+<span class="cstat-no" title="statement not covered" >            if (cb) {</span>
+<span class="cstat-no" title="statement not covered" >                cb();</span>
+            }
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        bot.replyInThread = <span class="fstat-no" title="function not covered" >fu</span>nction(src, resp, cb) {</span>
+&nbsp;
+            // can't clone this, not needed for this type of messages.
+<span class="cstat-no" title="statement not covered" >            delete(src.http_res);</span>
+            var copy = <span class="cstat-no" title="statement not covered" >clone(src);</span>
+&nbsp;
+            // make sure this does NOT include the activity id
+<span class="cstat-no" title="statement not covered" >            copy.raw_message.conversation = src.raw_message.channelData.channel;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            bot.reply(copy, resp, cb);</span>
+&nbsp;
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        bot.reply = <span class="fstat-no" title="function not covered" >fu</span>nction(src, resp, cb) {</span>
+<span class="cstat-no" title="statement not covered" >            if (src.type === 'composeExtension') {</span>
+<span class="cstat-no" title="statement not covered" >                bot.replyToComposeExtension(src, resp, cb);</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if (typeof resp == 'string') {</span>
+<span class="cstat-no" title="statement not covered" >                resp = {</span>
+                    text: resp
+                };
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            resp.serviceUrl = src.raw_message.serviceUrl;</span>
+<span class="cstat-no" title="statement not covered" >            resp.from = src.raw_message.recipient;</span>
+<span class="cstat-no" title="statement not covered" >            resp.recipient = src.raw_message.from;</span>
+<span class="cstat-no" title="statement not covered" >            resp.to = src.user;</span>
+<span class="cstat-no" title="statement not covered" >            resp.channel = src.channel;</span>
+<span class="cstat-no" title="statement not covered" >            resp.conversation = src.raw_message.conversation;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            bot.say(resp, cb);</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        bot.findConversation = <span class="fstat-no" title="function not covered" >fu</span>nction(message, cb) {</span>
+<span class="cstat-no" title="statement not covered" >            botkit.debug('CUSTOM FIND CONVO', message.user, message.channel);</span>
+<span class="cstat-no" title="statement not covered" >            for (var t = 0; t &lt; botkit.tasks.length; t++) {</span>
+<span class="cstat-no" title="statement not covered" >                for (var c = 0; c &lt; botkit.tasks[t].convos.length; c++) {</span>
+<span class="cstat-no" title="statement not covered" >                    if (</span>
+                        botkit.tasks[t].convos[c].isActive() &amp;&amp;
+                      botkit.tasks[t].convos[c].source_message.user == message.user &amp;&amp;
+                      botkit.excludedEvents.indexOf(message.type) == -1 // this type of message should not be included
+&nbsp;
+                    ) {
+<span class="cstat-no" title="statement not covered" >                        botkit.debug('FOUND EXISTING CONVO!');</span>
+<span class="cstat-no" title="statement not covered" >                        cb(botkit.tasks[t].convos[c]);</span>
+<span class="cstat-no" title="statement not covered" >                        return;</span>
+                    }
+                }
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            cb();</span>
+        };
+&nbsp;
+        /*
+         * return info about the specific instance of this bot
+         * including identity information, and any other info that is relevant
+         */
+<span class="cstat-no" title="statement not covered" >        bot.getInstanceInfo = <span class="fstat-no" title="function not covered" >fu</span>nction(cb) {</span>
+<span class="cstat-no" title="statement not covered" >            return new Promise(<span class="fstat-no" title="function not covered" >fu</span>nction(resolve) {</span>
+                var instance = <span class="cstat-no" title="statement not covered" >{</span>
+                    identity: {},
+                    team: {},
+                };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                instance.identity.name = bot.identity.name;</span>
+<span class="cstat-no" title="statement not covered" >                instance.identity.id = bot.identity.id;</span>
+<span class="cstat-no" title="statement not covered" >                if (bot.config.team) {</span>
+<span class="cstat-no" title="statement not covered" >                    instance.team.id = bot.config.team;</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (cb) <span class="cstat-no" title="statement not covered" >cb(null, instance);</span></span>
+<span class="cstat-no" title="statement not covered" >                resolve(instance);</span>
+            });
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        bot.getMessageUser = <span class="fstat-no" title="function not covered" >fu</span>nction(message, cb) {</span>
+<span class="cstat-no" title="statement not covered" >            return new Promise(<span class="fstat-no" title="function not covered" >fu</span>nction(resolve, reject) {</span>
+<span class="cstat-no" title="statement not covered" >                bot.api.getUserById(message.channel,  message.user, <span class="fstat-no" title="function not covered" >fu</span>nction(err, identity) {</span>
+<span class="cstat-no" title="statement not covered" >                    if (err) {</span>
+<span class="cstat-no" title="statement not covered" >                        if (cb) {</span>
+<span class="cstat-no" title="statement not covered" >                            cb(err);</span>
+                        }
+<span class="cstat-no" title="statement not covered" >                        return reject(err);</span>
+                    }
+                    // normalize this into what botkit wants to see
+                    var profile = <span class="cstat-no" title="statement not covered" >{</span>
+                        id: message.user,
+                        username: identity.name,
+                        first_name: identity.givenName,
+                        last_name: identity.surname,
+                        full_name: identity.givenName + ' ' + identity.surname,
+                        email: identity.email, // may be blank
+                        gender: null, // no source for this info
+                        timezone: null, //  no source for this info
+                        timezone_offset: null, // no source for this info
+                    };
+<span class="cstat-no" title="statement not covered" >                    if (cb) {</span>
+<span class="cstat-no" title="statement not covered" >                        cb(null, profile);</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    resolve(profile);</span>
+                });
+            });
+&nbsp;
+        };
+&nbsp;
+        /* helper functions for creating attachments */
+<span class="cstat-no" title="statement not covered" >        bot.createAttachment = <span class="fstat-no" title="function not covered" >fu</span>nction(type, title, subtitle, text, images, buttons, tap) {</span>
+&nbsp;
+            var obj = <span class="cstat-no" title="statement not covered" >{</span>
+                content: (typeof(title) === 'object') ? title : {
+                    title: title || null,
+                    subtitle: subtitle || null,
+                    text: text || null,
+                    buttons: buttons || [],
+                    images: images || [],
+                    tap: tap || null,
+                },
+                contentType: 'application/vnd.microsoft.card.' + type,
+                title: <span class="fstat-no" title="function not covered" >fu</span>nction(v) {
+<span class="cstat-no" title="statement not covered" >                    this.content.title = v;</span>
+<span class="cstat-no" title="statement not covered" >                    return this;</span>
+                },
+                subtitle: <span class="fstat-no" title="function not covered" >fu</span>nction(v) {
+<span class="cstat-no" title="statement not covered" >                    this.content.subtitle = v;</span>
+<span class="cstat-no" title="statement not covered" >                    return this;</span>
+                },
+                text: <span class="fstat-no" title="function not covered" >fu</span>nction(v) {
+<span class="cstat-no" title="statement not covered" >                    this.content.text = v;</span>
+<span class="cstat-no" title="statement not covered" >                    return this;</span>
+                },
+                button: <span class="fstat-no" title="function not covered" >fu</span>nction(type, title, value) {
+<span class="cstat-no" title="statement not covered" >                    if (!this.content.buttons) {</span>
+<span class="cstat-no" title="statement not covered" >                        this.content.buttons = [];</span>
+                    }
+&nbsp;
+                    var button_obj = <span class="cstat-no" title="statement not covered" >(typeof(type) === 'object') ? type : {</span>
+                        type: type,
+                        title: title,
+                        value: value,
+                    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    this.content.buttons.push(button_obj);</span>
+<span class="cstat-no" title="statement not covered" >                    return this;</span>
+                },
+                image: <span class="fstat-no" title="function not covered" >fu</span>nction(url, alt) {
+<span class="cstat-no" title="statement not covered" >                    if (!this.content.images) {</span>
+<span class="cstat-no" title="statement not covered" >                        this.content.images = [];</span>
+                    }
+&nbsp;
+                    var img_obj = <span class="cstat-no" title="statement not covered" >(typeof(url) === 'object') ? type : {</span>
+                        url: url,
+                        alt: alt || null
+                    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    this.content.images.push(img_obj);</span>
+<span class="cstat-no" title="statement not covered" >                    return this;</span>
+                },
+                tap: <span class="fstat-no" title="function not covered" >fu</span>nction(type, title, payload) {
+                    var tap_action = <span class="cstat-no" title="statement not covered" >(typeof(type) === 'object') ? type : {</span>
+                        type: type,
+                        title: title,
+                        payload: payload,
+                    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    this.content.tap = tap_action;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    return this;</span>
+                },
+                asString: <span class="fstat-no" title="function not covered" >fu</span>nction() {
+<span class="cstat-no" title="statement not covered" >                    return JSON.stringify(this, null, 2);</span>
+                }
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return obj;</span>
+&nbsp;
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        bot.createHero = <span class="fstat-no" title="function not covered" >fu</span>nction(title, subtitle, text, buttons, images, tap) {</span>
+<span class="cstat-no" title="statement not covered" >            return bot.createAttachment('hero', title, subtitle, text, buttons, images, tap);</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        bot.createThumbnail = <span class="fstat-no" title="function not covered" >fu</span>nction(title, subtitle, text, buttons, images, tap) {</span>
+<span class="cstat-no" title="statement not covered" >            return bot.createAttachment('thumbnail', title, subtitle, text, buttons, images, tap);</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return bot;</span>
+    });
+&nbsp;
+&nbsp;
+    controller.createWebhookEndpoints = <span class="fstat-no" title="function not covered" >fu</span>nction() {
+<span class="cstat-no" title="statement not covered" >        controller.webserver.post('/teams/receive', <span class="fstat-no" title="function not covered" >fu</span>nction(req, res) {</span>
+&nbsp;
+            var message = <span class="cstat-no" title="statement not covered" >req.body;</span>
+&nbsp;
+            var options = <span class="cstat-no" title="statement not covered" >{</span>
+                serviceUrl: message.serviceUrl,
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (message.channelData &amp;&amp; message.channelData.team &amp;&amp; message.channelData.team.id) {</span>
+<span class="cstat-no" title="statement not covered" >                options.team = message.channelData.team.id;</span>
+            }
+&nbsp;
+            var bot = <span class="cstat-no" title="statement not covered" >controller.spawn(options);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (message.recipient) {</span>
+<span class="cstat-no" title="statement not covered" >                bot.identity = message.recipient;</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            controller.ingest(bot, message, res);</span>
+&nbsp;
+        });
+    };
+&nbsp;
+    controller.middleware.spawn.use(<span class="fstat-no" title="function not covered" >fu</span>nction(bot, next) {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (!bot.config.serviceUrl) {</span>
+<span class="cstat-no" title="statement not covered" >            throw new Error('Cannot spawn a bot without a serviceUrl in the configuration');</span>
+        }
+&nbsp;
+        // set up the teams api client
+<span class="cstat-no" title="statement not covered" >        bot.api = TeamsAPI({</span>
+            clientId: controller.config.clientId,
+            clientSecret: controller.config.clientSecret,
+            token: controller.config.token,
+            serviceUrl: bot.config.serviceUrl,
+            team: bot.config.team,
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        next();</span>
+&nbsp;
+    });
+&nbsp;
+    controller.middleware.ingest.use(<span class="fstat-no" title="function not covered" >fu</span>nction(bot, message, res, next) {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        res.status(200);</span>
+<span class="cstat-no" title="statement not covered" >        if (message.name != 'composeExtension/query') {</span>
+            // send a result back immediately
+<span class="cstat-no" title="statement not covered" >            res.send('');</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        message.http_res = res;</span>
+<span class="cstat-no" title="statement not covered" >        next();</span>
+&nbsp;
+    });
+&nbsp;
+    controller.middleware.normalize.use(<span class="fstat-no" title="function not covered" >fu</span>nction(bot, message, next) {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        message.user = message.raw_message.from.id;</span>
+<span class="cstat-no" title="statement not covered" >        message.channel = message.raw_message.conversation.id;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        next();</span>
+&nbsp;
+    });
+&nbsp;
+&nbsp;
+    controller.middleware.categorize.use(<span class="fstat-no" title="function not covered" >fu</span>nction(bot, message, next) {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (message.type === 'invoke' &amp;&amp; message.name === 'composeExtension/query') {</span>
+<span class="cstat-no" title="statement not covered" >            message.type = 'composeExtension';</span>
+&nbsp;
+            // teams only supports a single parameter, it either exists or doesn't!
+<span class="cstat-no" title="statement not covered" >            message.text = message.value.parameters[0].value;</span>
+&nbsp;
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        next();</span>
+&nbsp;
+    });
+&nbsp;
+&nbsp;
+    controller.middleware.categorize.use(<span class="fstat-no" title="function not covered" >fu</span>nction(bot, message, next) {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (message.type == 'conversationUpdate') {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (message.raw_message.membersAdded) {</span>
+                // replies to these end up in the right place
+<span class="cstat-no" title="statement not covered" >                for (var m = 0; m &lt; message.raw_message.membersAdded.length; m++) {</span>
+&nbsp;
+                    /*
+                     * clone the message
+                     * and copy this member into the from list
+                     */
+<span class="cstat-no" title="statement not covered" >                    delete(message.http_res); </span>// &lt;-- that can't be cloned safely
+                    var copy = <span class="cstat-no" title="statement not covered" >clone(message);</span>
+<span class="cstat-no" title="statement not covered" >                    copy.from = message.raw_message.membersAdded[m];</span>
+<span class="cstat-no" title="statement not covered" >                    copy.user = copy.from.id;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    if (copy.user == message.raw_message.recipient.id) {</span>
+<span class="cstat-no" title="statement not covered" >                        copy.type = 'bot_channel_join';</span>
+                    } else {
+<span class="cstat-no" title="statement not covered" >                        copy.type = 'user_channel_join';</span>
+                    }
+&nbsp;
+                    // restart the categorize process for the newly cloned messages
+<span class="cstat-no" title="statement not covered" >                    controller.categorize(bot, copy);</span>
+&nbsp;
+                }
+&nbsp;
+            } else <span class="cstat-no" title="statement not covered" >if (message.raw_message.membersRemoved) {</span>
+&nbsp;
+                // replies to these end up in the right place
+<span class="cstat-no" title="statement not covered" >                for (var m = 0; m &lt; message.raw_message.membersRemoved.length; m++) {</span>
+&nbsp;
+                    /*
+                     * clone the message
+                     * and copy this member into the from list
+                     */
+<span class="cstat-no" title="statement not covered" >                    delete(message.http_res); </span>// &lt;-- that can't be cloned safely
+                    var copy = <span class="cstat-no" title="statement not covered" >clone(message);</span>
+<span class="cstat-no" title="statement not covered" >                    copy.from = message.raw_message.membersRemoved[m];</span>
+<span class="cstat-no" title="statement not covered" >                    copy.user = copy.from.id;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    if (copy.user == message.raw_message.recipient.id) {</span>
+<span class="cstat-no" title="statement not covered" >                        copy.type = 'bot_channel_leave';</span>
+                    } else {
+<span class="cstat-no" title="statement not covered" >                        copy.type = 'user_channel_leave';</span>
+                    }
+&nbsp;
+                    // restart the categorize process for the newly cloned messages
+<span class="cstat-no" title="statement not covered" >                    controller.categorize(bot, copy);</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                next();</span>
+            } else <span class="cstat-no" title="statement not covered" >if (message.raw_message.channelData &amp;&amp; message.raw_message.channelData.eventType) {</span>
+                /*
+                 * channelCreated
+                 * channelDeleted
+                 * channelRenamed
+                 * teamRenamed
+                 */
+<span class="cstat-no" title="statement not covered" >                message.type = message.raw_message.channelData.eventType;</span>
+&nbsp;
+                // replies to these end up in general
+<span class="cstat-no" title="statement not covered" >                next();</span>
+            }
+&nbsp;
+        } else {
+<span class="cstat-no" title="statement not covered" >            next();</span>
+        }
+    });
+&nbsp;
+&nbsp;
+    controller.middleware.categorize.use(<span class="fstat-no" title="function not covered" >fu</span>nction(bot, message, next) {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (message.type == 'message') <span class="cstat-no" title="statement not covered" >message.type = 'message_received';</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (!message.conversation.isGroup &amp;&amp; message.type == 'message_received') {</span>
+<span class="cstat-no" title="statement not covered" >            message.type = 'direct_message';</span>
+        } else <span class="cstat-no" title="statement not covered" >if (message.conversation.isGroup &amp;&amp; message.type == 'message_received') {</span>
+&nbsp;
+            // start by setting this to a mention, meaning that the bot's name was _somewhere_ in the string
+<span class="cstat-no" title="statement not covered" >            message.type = 'mention';</span>
+&nbsp;
+            // check to see if this is a direct mention ,meaning bot was mentioned at start of string
+<span class="cstat-no" title="statement not covered" >            for (var e = 0; e &lt; message.entities.length; e++) {</span>
+                var entity = <span class="cstat-no" title="statement not covered" >message.entities[0];</span>
+<span class="cstat-no" title="statement not covered" >                if (entity.type == 'mention' &amp;&amp; message.text) {</span>
+                    var pattern = <span class="cstat-no" title="statement not covered" >new RegExp(message.recipient.id);</span>
+<span class="cstat-no" title="statement not covered" >                    if (entity.mentioned.id.match(pattern)) {</span>
+                        var clean = <span class="cstat-no" title="statement not covered" >new RegExp('^' + entity.text + '\\s+');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        if (message.text.match(clean)) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                            message.text = message.text.replace(clean, '');</span>
+<span class="cstat-no" title="statement not covered" >                            message.type = 'direct_mention';</span>
+                        }
+                    }
+                }
+            }
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        next();</span>
+    });
+&nbsp;
+&nbsp;
+    /*
+     * This middleware looks for Slack-style user mentions in a message
+     * &lt;@USERID&gt; and translates them into Microsoft Teams style mentions
+     * which look like &lt;at&gt;@User Name&lt;/at&gt; and have a matching row in the
+     * message.entities field.
+     */
+    controller.middleware.send.use(<span class="fstat-no" title="function not covered" >fu</span>nction(bot, message, next) {
+&nbsp;
+        var matches;
+        var uniques = <span class="cstat-no" title="statement not covered" >[];</span>
+&nbsp;
+        // extract all the &lt;@USERID&gt; patterns
+<span class="cstat-no" title="statement not covered" >        if (matches = message.text.match(/\&lt;\@(.*?)\&gt;/igm)) {</span>
+&nbsp;
+            // get a set of UNIQUE mentions - since the lookup of profile data is expensive
+<span class="cstat-no" title="statement not covered" >            for (var m = 0; m &lt; matches.length; m++) {</span>
+<span class="cstat-no" title="statement not covered" >                if (uniques.indexOf(matches[m]) == -1) {</span>
+<span class="cstat-no" title="statement not covered" >                    uniques.push(matches[m]);</span>
+                }
+            }
+&nbsp;
+            // loop over each mention
+<span class="cstat-no" title="statement not covered" >            async.each(uniques, <span class="fstat-no" title="function not covered" >fu</span>nction(match, next_match) {</span>
+&nbsp;
+                var uid = <span class="cstat-no" title="statement not covered" >match.replace(/^\&lt;\@/, '').replace(/\&gt;$/, '');</span>
+&nbsp;
+                // use the teams API to load the latest profile information for the user
+<span class="cstat-no" title="statement not covered" >                bot.api.getUserById(message.channel,  uid, <span class="fstat-no" title="function not covered" >fu</span>nction(err, user_profile) {</span>
+&nbsp;
+                    // if user is valid, replace the Slack-style mention and append to entities list
+<span class="cstat-no" title="statement not covered" >                    if (user_profile) {</span>
+                        var pattern = <span class="cstat-no" title="statement not covered" >new RegExp('&lt;@' + uid + '&gt;', 'g');</span>
+<span class="cstat-no" title="statement not covered" >                        message.text = message.text.replace(pattern, '&lt;at&gt;@' + user_profile.name + '&lt;/at&gt;');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        if (!message.entities) {</span>
+<span class="cstat-no" title="statement not covered" >                            message.entities = [];</span>
+                        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        message.entities.push({</span>
+                            type: 'mention',
+                            mentioned: {
+                                id: uid,
+                                name: user_profile.name,
+                            },
+                            text: '&lt;at&gt;@' + user_profile.name + '&lt;/at&gt;',
+                        });
+                    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    next_match();</span>
+&nbsp;
+                });
+&nbsp;
+            }, <span class="fstat-no" title="function not covered" >fu</span>nction() {
+&nbsp;
+                // we've processed all the matches, continue
+<span class="cstat-no" title="statement not covered" >                next();</span>
+&nbsp;
+            });
+&nbsp;
+        } else {
+&nbsp;
+            // if there were no matches, continue
+<span class="cstat-no" title="statement not covered" >            next();</span>
+&nbsp;
+        }
+&nbsp;
+    });
+&nbsp;
+    controller.middleware.format.use(<span class="fstat-no" title="function not covered" >fu</span>nction(bot, message, platform_message, next) {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        platform_message.type = 'message';</span>
+<span class="cstat-no" title="statement not covered" >        platform_message.recipient =  message.recipient;</span>
+<span class="cstat-no" title="statement not covered" >        platform_message.from =  message.from;</span>
+<span class="cstat-no" title="statement not covered" >        platform_message.text =  message.text;</span>
+<span class="cstat-no" title="statement not covered" >        platform_message.textFormat =  'markdown';</span>
+<span class="cstat-no" title="statement not covered" >        platform_message.entities =  message.entities;</span>
+<span class="cstat-no" title="statement not covered" >        platform_message.attachments =  message.attachments || null;</span>
+<span class="cstat-no" title="statement not covered" >        platform_message.attachmentLayout =  message.attachmentLayout || 'list';</span>
+<span class="cstat-no" title="statement not covered" >        platform_message.conversation =  message.conversation;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        next();</span>
+    });
+&nbsp;
+    controller.startTicking();
+    return controller;
+}
+&nbsp;
+module.exports = TeamsBot;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Dec 14 2018 14:56:57 GMT-0600 (Central Standard Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

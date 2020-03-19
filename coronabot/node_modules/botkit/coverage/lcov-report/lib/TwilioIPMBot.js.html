@@ -1,0 +1,1109 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/TwilioIPMBot.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">All files</a> / <a href="index.html">lib</a> TwilioIPMBot.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">2.41% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>4/166</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/99</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/37</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">2.41% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>4/166</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var Botkit = require(__dirname + '/CoreBot.js');
+var Twilio = require('twilio');
+var async = require('async');
+&nbsp;
+&nbsp;
+function <span class="fstat-no" title="function not covered" >Twiliobot(</span>configuration) {
+&nbsp;
+    // Create a core botkit bot
+    var twilio_botkit = <span class="cstat-no" title="statement not covered" >Botkit(configuration || {});</span>
+&nbsp;
+    /*
+     * customize the bot definition, which will be used when new connections
+     * spawn!
+     */
+<span class="cstat-no" title="statement not covered" >    twilio_botkit.defineBot(<span class="fstat-no" title="function not covered" >fu</span>nction(botkit, config) {</span>
+        var bot = <span class="cstat-no" title="statement not covered" >{</span>
+            type: 'twilioipm',
+            botkit: botkit,
+            config: config || {},
+            utterances: botkit.utterances,
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        bot.send = <span class="fstat-no" title="function not covered" >fu</span>nction(message, cb) {</span>
+<span class="cstat-no" title="statement not covered" >            botkit.debug('SEND ', message);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            bot.api.channels(message.channel).messages.create(message)</span>
+                .then(<span class="fstat-no" title="function not covered" >fu</span>nction(response) {
+<span class="cstat-no" title="statement not covered" >                    cb(null, response);</span>
+                }).catch(<span class="fstat-no" title="function not covered" >fu</span>nction(err) {
+<span class="cstat-no" title="statement not covered" >                    cb(err);</span>
+                });
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        bot.reply = <span class="fstat-no" title="function not covered" >fu</span>nction(src, resp, cb) {</span>
+            var msg = <span class="cstat-no" title="statement not covered" >{};</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (typeof(resp) == 'string') {</span>
+<span class="cstat-no" title="statement not covered" >                msg.text = resp;</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >                msg = resp;</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            msg.user = src.user;</span>
+<span class="cstat-no" title="statement not covered" >            msg.channel = src.channel;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            bot.say(msg, cb);</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        bot.autoJoinChannels = <span class="fstat-no" title="function not covered" >fu</span>nction() {</span>
+<span class="cstat-no" title="statement not covered" >            bot.api.channels.list().then(<span class="fstat-no" title="function not covered" >fu</span>nction(full_channel_list) {</span>
+<span class="cstat-no" title="statement not covered" >                if (bot.config.autojoin === true) {</span>
+<span class="cstat-no" title="statement not covered" >                    bot.channels = full_channel_list;</span>
+<span class="cstat-no" title="statement not covered" >                    bot.channels.forEach(<span class="fstat-no" title="function not covered" >fu</span>nction(chan) {</span>
+<span class="cstat-no" title="statement not covered" >                        bot.api.channels(chan.sid).members.create({</span>
+                            identity: bot.identity
+                        }).then(<span class="fstat-no" title="function not covered" >fu</span>nction() {
+<span class="cstat-no" title="statement not covered" >                            botkit.debug('added ' +</span>
+                              bot.identity + ' as a member of the ' + chan.friendlyName);
+                        }).catch(<span class="fstat-no" title="function not covered" >fu</span>nction(error) {
+<span class="cstat-no" title="statement not covered" >                            botkit.debug('Couldn\'t join the channel: ' +</span>
+                                chan.friendlyName + ': ' + error);
+                        });
+                    });
+                } else <span class="cstat-no" title="statement not covered" >if (bot.identity) {</span>
+&nbsp;
+                    // load up a list of all the channels that the bot is currently
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    bot.channels = [];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    async.each(full_channel_list, <span class="fstat-no" title="function not covered" >fu</span>nction(chan, next) {</span>
+<span class="cstat-no" title="statement not covered" >                        bot.api.channels(chan.sid).members.list().then(<span class="fstat-no" title="function not covered" >fu</span>nction(members) {</span>
+<span class="cstat-no" title="statement not covered" >                            for (var x = 0; x &lt; members.length; x++) {</span>
+<span class="cstat-no" title="statement not covered" >                                if (members[x].identity === bot.identity) {</span>
+<span class="cstat-no" title="statement not covered" >                                    bot.channels.push(chan);</span>
+                                }
+                            }
+<span class="cstat-no" title="statement not covered" >                            next();</span>
+                        }).catch(<span class="fstat-no" title="function not covered" >fu</span>nction(error) {
+<span class="cstat-no" title="statement not covered" >                            botkit.log('Error loading channel member list: ', error);</span>
+<span class="cstat-no" title="statement not covered" >                            next();</span>
+                        });
+                    });
+                }
+            }).catch(<span class="fstat-no" title="function not covered" >fu</span>nction(error) {
+<span class="cstat-no" title="statement not covered" >                botkit.log('Error loading channel list: ' + error);</span>
+                /*
+                 * fails if no channels exist
+                 * set the channels to empty
+                 */
+<span class="cstat-no" title="statement not covered" >                bot.channels = { channels: [] };</span>
+            });
+&nbsp;
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        bot.configureBotIdentity = <span class="fstat-no" title="function not covered" >fu</span>nction() {</span>
+<span class="cstat-no" title="statement not covered" >            if (bot.identity !== null || bot.identity !== '') {</span>
+&nbsp;
+                // try the get by identity thing
+<span class="cstat-no" title="statement not covered" >                bot.api.users(bot.identity).fetch().then(<span class="fstat-no" title="function not covered" >fu</span>nction() {</span>
+<span class="cstat-no" title="statement not covered" >                    bot.autoJoinChannels();</span>
+                }).catch(<span class="fstat-no" title="function not covered" >fu</span>nction(error) {
+<span class="cstat-no" title="statement not covered" >                    if (error) {</span>
+<span class="cstat-no" title="statement not covered" >                        console.error(error);</span>
+<span class="cstat-no" title="statement not covered" >                        process.exit(1);</span>
+                    } else {
+                        // if not make the new user and see if they need to be added to all the channels
+<span class="cstat-no" title="statement not covered" >                        bot.api.users.create({</span>
+                            identity: bot.identity
+                        }).then(<span class="fstat-no" title="function not covered" >fu</span>nction() {
+<span class="cstat-no" title="statement not covered" >                            bot.autoJoinChannels();</span>
+                        }).catch(<span class="fstat-no" title="function not covered" >fu</span>nction(error) {
+<span class="cstat-no" title="statement not covered" >                            botkit.log('Could not get Bot Identity:');</span>
+<span class="cstat-no" title="statement not covered" >                            botkit.log(error);</span>
+<span class="cstat-no" title="statement not covered" >                            process.exit(1);</span>
+                        });
+                    }
+                });
+            }
+        };
+&nbsp;
+        /**
+         * This handles the particulars of finding an existing conversation or
+         * topic to fit the message into...
+         */
+<span class="cstat-no" title="statement not covered" >        bot.findConversation = <span class="fstat-no" title="function not covered" >fu</span>nction(message, cb) {</span>
+<span class="cstat-no" title="statement not covered" >            botkit.debug('CUSTOM FIND CONVO', message.user, message.channel);</span>
+<span class="cstat-no" title="statement not covered" >            for (var t = 0; t &lt; botkit.tasks.length; t++) {</span>
+<span class="cstat-no" title="statement not covered" >                for (var c = 0; c &lt; botkit.tasks[t].convos.length; c++) {</span>
+<span class="cstat-no" title="statement not covered" >                    if (</span>
+                        botkit.tasks[t].convos[c].isActive() &amp;&amp;
+                        botkit.tasks[t].convos[c].source_message.user == message.user &amp;&amp;
+                            botkit.tasks[t].convos[c].source_message.channel == message.channel
+                    ) {
+<span class="cstat-no" title="statement not covered" >                        botkit.debug('FOUND EXISTING CONVO!');</span>
+<span class="cstat-no" title="statement not covered" >                        cb(botkit.tasks[t].convos[c]);</span>
+<span class="cstat-no" title="statement not covered" >                        return;</span>
+                    }
+                }
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            cb();</span>
+        };
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        bot.client = new Twilio(config.TWILIO_ACCOUNT_SID, config.TWILIO_AUTH_TOKEN);</span>
+<span class="cstat-no" title="statement not covered" >        bot.api = bot.client.chat.services(config.TWILIO_IPM_SERVICE_SID);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (config.identity) {</span>
+<span class="cstat-no" title="statement not covered" >            bot.identity = config.identity;</span>
+<span class="cstat-no" title="statement not covered" >            bot.configureBotIdentity();</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return bot;</span>
+&nbsp;
+    });
+&nbsp;
+    // set up a web route for receiving outgoing webhooks and/or slash commands
+<span class="cstat-no" title="statement not covered" >    twilio_botkit.createWebhookEndpoints = <span class="fstat-no" title="function not covered" >fu</span>nction(webserver, bot) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        twilio_botkit.log(</span>
+            '** Serving webhook endpoints for receiving messages ' +
+            'webhooks at: http://' + twilio_botkit.config.hostname + ':' +
+                twilio_botkit.config.port + '/twilio/receive');
+<span class="cstat-no" title="statement not covered" >        webserver.post('/twilio/receive', <span class="fstat-no" title="function not covered" >fu</span>nction(req, res) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            res.status(200);</span>
+<span class="cstat-no" title="statement not covered" >            res.send('ok');</span>
+<span class="cstat-no" title="statement not covered" >            twilio_botkit.handleWebhookPayload(req, res, bot);</span>
+&nbsp;
+        });
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return twilio_botkit;</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    twilio_botkit.handleWebhookPayload = <span class="fstat-no" title="function not covered" >fu</span>nction(req, res, bot) {</span>
+        var message = <span class="cstat-no" title="statement not covered" >req.body;</span>
+<span class="cstat-no" title="statement not covered" >        twilio_botkit.ingest(bot, message, res);</span>
+    };
+&nbsp;
+    //normalize the message to ensure channel, and user properties are present
+<span class="cstat-no" title="statement not covered" >    twilio_botkit.middleware.normalize.use(function <span class="fstat-no" title="function not covered" >normalizeMessage(</span>bot, message, next) {</span>
+<span class="cstat-no" title="statement not covered" >        if (message.EventType == 'onMessageSent') {</span>
+&nbsp;
+            // customize fields to be compatible with Botkit
+<span class="cstat-no" title="statement not covered" >            message.text = message.Body;</span>
+<span class="cstat-no" title="statement not covered" >            message.from = message.From;</span>
+<span class="cstat-no" title="statement not covered" >            message.to = message.To;</span>
+<span class="cstat-no" title="statement not covered" >            message.user = message.From;</span>
+<span class="cstat-no" title="statement not covered" >            message.channel = message.ChannelSid;</span>
+&nbsp;
+        } else <span class="cstat-no" title="statement not covered" >if (message.EventType == 'onChannelAdded' || message.EventType == 'onChannelAdd') {</span>
+            // this event has a channel sid but not a user
+<span class="cstat-no" title="statement not covered" >            message.channel = message.ChannelSid;</span>
+&nbsp;
+        } else <span class="cstat-no" title="statement not covered" >if (message.EventType == 'onChannelDestroyed' || message.EventType == 'onChannelDestroy') {</span>
+            // this event has a channel sid but not a user
+<span class="cstat-no" title="statement not covered" >            message.channel = message.ChannelSid;</span>
+&nbsp;
+        } else <span class="cstat-no" title="statement not covered" >if (message.EventType == 'onMemberAdded' || message.EventType == 'onMemberAdd') {</span>
+            // should user be MemberSid the The Member Sid of the newly added Member
+<span class="cstat-no" title="statement not covered" >            message.user = message.Identity;</span>
+<span class="cstat-no" title="statement not covered" >            message.channel = message.ChannelSid;</span>
+        } else <span class="cstat-no" title="statement not covered" >if (message.EventType == 'onMemberRemoved' || message.EventType == 'onMemberRemove') {</span>
+<span class="cstat-no" title="statement not covered" >            message.user = message.Identity;</span>
+<span class="cstat-no" title="statement not covered" >            message.channel = message.ChannelSid;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        next();</span>
+    });
+&nbsp;
+    //categorize the message type with appropriate checks
+<span class="cstat-no" title="statement not covered" >    twilio_botkit.middleware.categorize.use(function <span class="fstat-no" title="function not covered" >categorizeMessage(</span>bot, message, next) {</span>
+<span class="cstat-no" title="statement not covered" >        if (message.EventType === 'onMessageSent') {</span>
+            //discard echo messages
+<span class="cstat-no" title="statement not covered" >            if (bot.identity &amp;&amp; message.from === bot.identity) {</span>
+<span class="cstat-no" title="statement not covered" >                return;</span>
+            }
+&nbsp;
+            // message without text is probably an edit
+<span class="cstat-no" title="statement not covered" >            if (!message.text) {</span>
+<span class="cstat-no" title="statement not covered" >                return;</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (bot.identity) {</span>
+                var channels = <span class="cstat-no" title="statement not covered" >bot.channels;</span>
+&nbsp;
+                // if its not in a channel with the bot
+                var apprChan = <span class="cstat-no" title="statement not covered" >channels.filter(<span class="fstat-no" title="function not covered" >fu</span>nction(ch) {</span>
+<span class="cstat-no" title="statement not covered" >                    return ch.sid === message.channel;</span>
+                });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (apprChan.length === 0) {</span>
+<span class="cstat-no" title="statement not covered" >                    return;</span>
+                }
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            message.type = 'message_received';</span>
+&nbsp;
+        } else <span class="cstat-no" title="statement not covered" >if (message.EventType === 'onMemberRemoved') {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (bot.identity &amp;&amp; message.user === bot.identity) {</span>
+                // remove that channel from bot.channels.channels
+                var chan_to_rem = <span class="cstat-no" title="statement not covered" >bot.channels.map(<span class="fstat-no" title="function not covered" >fu</span>nction(ch) {</span>
+<span class="cstat-no" title="statement not covered" >                    return ch.sid;</span>
+                }).indexOf(message.channel);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (chan_to_rem != -1) {</span>
+<span class="cstat-no" title="statement not covered" >                    bot.channels.splice(chan_to_rem, 1);</span>
+<span class="cstat-no" title="statement not covered" >                    twilio_botkit.debug('Unsubscribing from channel because of memberremove.');</span>
+&nbsp;
+                }
+&nbsp;
+            } else <span class="cstat-no" title="statement not covered" >if (bot.identity) {</span>
+                var channels = <span class="cstat-no" title="statement not covered" >bot.channels;</span>
+&nbsp;
+                // if its not in a channel with the bot
+                var apprChan = <span class="cstat-no" title="statement not covered" >channels.filter(<span class="fstat-no" title="function not covered" >fu</span>nction(ch) {</span>
+<span class="cstat-no" title="statement not covered" >                    return ch.sid == message.channel;</span>
+                });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (apprChan.length === 0) {</span>
+<span class="cstat-no" title="statement not covered" >                    return;</span>
+                }
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (bot.identity &amp;&amp; bot.identity == message.user) {</span>
+<span class="cstat-no" title="statement not covered" >                message.type = 'bot_channel_leave';</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >                message.type = 'user_channel_leave';</span>
+            }
+        } else <span class="cstat-no" title="statement not covered" >if (message.EventType === 'onMemberAdded') {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (bot.identity &amp;&amp; message.user === bot.identity) {</span>
+<span class="cstat-no" title="statement not covered" >                bot.api.channels(message.channel).fetch().then(<span class="fstat-no" title="function not covered" >fu</span>nction(response) {</span>
+<span class="cstat-no" title="statement not covered" >                    bot.channels.push(response);</span>
+<span class="cstat-no" title="statement not covered" >                    twilio_botkit.debug('Subscribing to channel because of memberadd.');</span>
+                }).catch(<span class="fstat-no" title="function not covered" >fu</span>nction(error) {
+<span class="cstat-no" title="statement not covered" >                    botkit.log(error);</span>
+                });
+            } else <span class="cstat-no" title="statement not covered" >if (bot.identity) {</span>
+                var channels = <span class="cstat-no" title="statement not covered" >bot.channels;</span>
+&nbsp;
+                // if its not in a channel with the bot
+                var apprChan = <span class="cstat-no" title="statement not covered" >channels.filter(<span class="fstat-no" title="function not covered" >fu</span>nction(ch) {</span>
+<span class="cstat-no" title="statement not covered" >                    return ch.sid == message.channel;</span>
+                });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (apprChan.length === 0) {</span>
+<span class="cstat-no" title="statement not covered" >                    return;</span>
+                }
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (bot.identity &amp;&amp; bot.identity == message.user) {</span>
+<span class="cstat-no" title="statement not covered" >                message.type = 'bot_channel_join';</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >                message.type = 'user_channel_join';</span>
+            }
+        } else <span class="cstat-no" title="statement not covered" >if (message.EventType === 'onChannelDestroyed') {</span>
+<span class="cstat-no" title="statement not covered" >            if (bot.identity) {</span>
+                var chan_to_rem = <span class="cstat-no" title="statement not covered" >bot.channels.map(<span class="fstat-no" title="function not covered" >fu</span>nction(ch) {</span>
+<span class="cstat-no" title="statement not covered" >                    return ch.sid;</span>
+                }).indexOf(message.channel);
+<span class="cstat-no" title="statement not covered" >                if (chan_to_rem !== -1) {</span>
+<span class="cstat-no" title="statement not covered" >                    bot.channels.splice(chan_to_rem, 1);</span>
+<span class="cstat-no" title="statement not covered" >                    twilio_botkit.debug('Unsubscribing from destroyed channel.');</span>
+                }
+<span class="cstat-no" title="statement not covered" >                message.type = 'channel_destroyed';</span>
+            }
+        } else <span class="cstat-no" title="statement not covered" >if (message.EventType === 'onChannelAdded') {</span>
+<span class="cstat-no" title="statement not covered" >            if (bot.identity &amp;&amp; bot.config.autojoin === true) {</span>
+                // join the channel
+<span class="cstat-no" title="statement not covered" >                bot.api.channels(message.channel).members.create({</span>
+                    identity: bot.identity
+                }).then(<span class="fstat-no" title="function not covered" >fu</span>nction() {
+<span class="cstat-no" title="statement not covered" >                    return bot.api.channels(message.channel).fetch().then(<span class="fstat-no" title="function not covered" >fu</span>nction(response) {</span>
+<span class="cstat-no" title="statement not covered" >                        bot.channels.push(response);</span>
+<span class="cstat-no" title="statement not covered" >                        twilio_botkit.debug('Subscribing to new channel.');</span>
+                    });
+                }).catch(<span class="fstat-no" title="function not covered" >fu</span>nction(error) {
+<span class="cstat-no" title="statement not covered" >                    botkit.log(error);</span>
+                });
+<span class="cstat-no" title="statement not covered" >                message.type = message.EventType;</span>
+<span class="cstat-no" title="statement not covered" >                message.type = 'channel_created';</span>
+            }
+        } else {
+<span class="cstat-no" title="statement not covered" >            message.type = message.EventType;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        next();</span>
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    twilio_botkit.middleware.format.use(function <span class="fstat-no" title="function not covered" >formatMessage(</span>bot, message, platform_message, next) {</span>
+<span class="cstat-no" title="statement not covered" >        platform_message.channel = message.channel;</span>
+<span class="cstat-no" title="statement not covered" >        platform_message.body = message.text;</span>
+<span class="cstat-no" title="statement not covered" >        if (bot.identity) {</span>
+<span class="cstat-no" title="statement not covered" >            platform_message.from = bot.identity;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        next();</span>
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    twilio_botkit.startTicking();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return twilio_botkit;</span>
+&nbsp;
+}
+&nbsp;
+module.exports = Twiliobot;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Dec 14 2018 14:56:57 GMT-0600 (Central Standard Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
