@@ -62,7 +62,7 @@ module.exports = function(controller) {
   controller.on('message_received', function(bot, message) {
       bot.reply(message, {text: "Humn ... deixe me pensar ...", typing: true });
       questions_answers = new CoronaQA();
-      var parsed_msg = message.text.replace('?','');
+      var parsed_msg = message.text;//.replace('?','');
       questions_answers.message = parsed_msg;
       console.log(questions_answers.message);
       if(questions_answers.processXL()){

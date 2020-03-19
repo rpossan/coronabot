@@ -11,10 +11,6 @@ module.exports = function(controller) {
 
   });
 
-  controller.hears('finish', 'message_received', function (bot, message) {
-    bot.reply(message, 'Agradeço o seu contato e sinta-se a vontade para me chamar novamente!\n Bye!');
-  });
-
   controller.hears('portugues', 'message_received', function (bot, message) {
     bot.reply(message, 'Agora estamos falando em português!');
   });

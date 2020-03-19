@@ -6,12 +6,16 @@ module.exports = function(controller) {
     controller.on('welcome_back', conductOnboarding);
 
     function conductOnboarding(bot, message) {
-      var greetings = 'Olá, sou o <b>Corona Bot</b> e estou aqui para te informar e te ajudar' +
-      'a se prevenir do <b>Corona Virus</b> e juntos iremos combater esta epidemia.' +
-      '<br />Você pode começar me perguntando algo, mas vou te deixar algumas sugestões abaixo.' +
-      '<br /> Hey, mas não deixe de me compartilhar com seus amigos e favoritar meu projeto' +
-      'nos links abaixos para apoiar o meu desenvolvimento.';
+      var greetings = message.text;
+      if(greetings == null){
+        greetings = 'Olá, sou o <b>Corona Bot</b> e estou aqui para te informar e te ajudar' +
+          ' a se prevenir do <b>Corona Virus</b> e juntos iremos combater esta epidemia.' +
+          '<br />Você pode começar me perguntando algo, mas vou te deixar algumas sugestões abaixo.' +
+          '<br /><i>Hey, mas não deixe de me compartilhar com seus amigos e favoritar meu projeto ' +
+          'nos links abaixos para apoiar o meu desenvolvimento.</i>';
+      }
       bot.startConversation(message, function(err, convo) {
+        first_contact = false;
         convo.say({
           text: greetings,
           quick_replies: [
@@ -24,13 +28,20 @@ module.exports = function(controller) {
       });
     }
 
+    controller.hears('finish', 'message_received', function (bot, message) {
+      message.text = 'Espero ter te ajudado em suas dúvidas!' +
+      '<br />Não se esqueça de me <b>compartilhar</b>.' +
+      '<br />Posso te ajudar em algo mais?'
+      conductOnboarding(bot, message);
+    });
+
     controller.hears(['help','contact','documentation','docs','community'], 'message_received', function(bot, message) {
 
       bot.startConversation(message, function(err, convo) {
 
         // set up a menu thread which other threads can point at.
         convo.ask({
-          text: 'I can point you to resources, and connect you with experts who can help.',
+          text: 'Humn ... não consigo te ajudar com isto.',
           quick_replies: [
             {
               title: 'Vamos falar com uma pessoa?',
